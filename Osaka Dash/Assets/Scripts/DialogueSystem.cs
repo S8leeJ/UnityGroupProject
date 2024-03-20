@@ -22,9 +22,9 @@ public class AnswerChoice
 
 public class DialogueLine
 {
-    public bool isQuestion;
-    public string text;
-    public List<AnswerChoice> answerChoices;
+    bool isQuestion;
+    string text;
+    List<AnswerChoice> answerChoices;
 
     public DialogueLine(bool isQuestion, string text, string[] answers)
     {
