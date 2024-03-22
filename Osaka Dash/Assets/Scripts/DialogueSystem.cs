@@ -1,76 +1,56 @@
 using JetBrains.Annotations;
+using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class AnswerChoice
+public abstract class AbstractDialogue
 {
-    string text;
-    Dialogue next;
-
-    public AnswerChoice(string text, Dialogue next)
+    public bool goToNext()
     {
-        this.text = text;
-        this.next = next;
-    }
-
-    public Dialogue getNext()
-    {
-        return next;
+        return true;
     }
 }
 
-public class DialogueLine
+public class DialogueLine : AbstractDialogue
 {
-    bool isQuestion;
-    string text;
-    List<AnswerChoice> answerChoices;
-
-    public DialogueLine(bool isQuestion, string text, string[] answers)
-    {
-        this.text = text;
-        if (isQuestion == false) this.isQuestion = false;
-        else
-        {
-            this.isQuestion = true;
-            answerChoices = new List<AnswerChoice>();
-            for (int i = 0; i < answers.Length; i++) 
-            {
-                //todo parsing answers format here
-            }
-        }
-    }
-
-    public bool isThisAQuestion()
-    {
-        return isQuestion;
-    }
-
-    public string toString()
-    {
-        return text;
-    }
-}
-
-public class Dialogue
-{
-    static Dictionary<string,Dialogue> Dialogues = new Dictionary<string,Dialogue>();
-
-    DialogueLine[] dialogueLines;
 
 }
 
 public class DialogueSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField][Tooltip("relative path to the dialogue text file from StreamingAssets folder")] String relativePath;
+    List<String> dialogues;
+    [SerializeField] GameObject dialogueBox;
+
+    void Awake()
+    {
+        if (relativePath.Length < 1) throw new Exception("no path to dialogue text file specified");
+        else if (relativePath.Substring(0, "StreamingAssets".Length) == "StreamingAssets") relativePath = relativePath.Substring("StreamingAssets".Length);
+        else if (relativePath[0] != '/') relativePath = '/' + relativePath;
+
+        if (dialogueBox == null) throw new Exception("no dialogue box specified");
+
+        dialogues = File.ReadAllLines(Application.streamingAssetsPath + relativePath).ToList();
+    }
+    
+    void ImportDialogue(List<String> dialogues)
+    {
+        for(int i = 0; i < dialogues.Count; i++)
+        {
+
+        }
+    }
+
+    public void goNext()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AnswerGiven(int answerChoice)
     {
-        
+
     }
 }
