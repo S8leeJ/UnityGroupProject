@@ -22,7 +22,7 @@ public abstract class AbstractDialogue
     public virtual List<string> getQuestionChoices() { return null; }
     public abstract int getType();
     public virtual TriggerableEvent getEvent() { return null; }
-    //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index, 4 = trigger event
+    //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index, 4 = trigger event, 5 = scene transition
     public virtual int getChoiceGoTo(int i) { return -1; }
 
 }
@@ -40,20 +40,31 @@ public class DialogueLine : AbstractDialogue
 public class Question : AbstractDialogue
 {
     string question;
-    List<string> answers;
-    List<int> choiceGoTo;
+    List<Tuple<string,int>> answers;
     public override string getText() { return question; }
-    public override List<string> getQuestionChoices() { return answers; }
+    public override List<string> getQuestionChoices()
+    {
+        List<string> answerText = new List<string>();
+        for(int i = 0; i < answers.Count; i++)
+        {
+            answerText.Add(answers[i].Item1);
+        }
+        return answerText;
+    }
     public override int getType() { return 2; }
     public override int getChoiceGoTo(int i)
     {
-        return choiceGoTo[i];
+        return answers[i].Item2;
     }
-    public Question(string question, List<string> answers,List<int> choiceEffects)
+    public Question(string question)
     {
         this.question = question;
-        this.answers = answers;
-        choiceGoTo = choiceEffects;
+        answers = new List<Tuple<string, int>>();
+    }
+
+    public void addAnswer(string answer,int done)
+    {
+        answers.Add(new Tuple<string, int>(answer, done));
     }
 }
 
@@ -89,29 +100,22 @@ public class DialogueGoTo : AbstractDialogue
     }
 }
 
+public class DialogueSceneTransition : AbstractDialogue
+{
+    string sceneName;
+    public override string getText() { return sceneName; }
+    public override int getType() { return 5; }
+
+    public DialogueSceneTransition(string sceneName)
+    {
+        this.sceneName = sceneName;
+    }
+}
+
 public class Dialogue
 {
     int dialoguePointer;
     List<AbstractDialogue> dialogueList;
-
-    public void addDialogueLine(string text)
-    {
-        dialogueList.Add(new DialogueLine(text));
-    }
-
-    public void addQuestion(string question,List<string> answers,List<int> choiceEffects)
-    {
-        dialogueList.Add(new Question(question, answers, choiceEffects));
-    }
-
-    public void addEvent(TriggerableEvent Event){
-        dialogueList.Add(new DialogueEvent(Event));
-    }
-
-    public void addGoTo(bool endDialogue, int indexToGo)
-    {
-        dialogueList.Add(new DialogueGoTo(endDialogue, indexToGo));
-    }
 
     public AbstractDialogue Advance(int i)
     {
@@ -137,10 +141,10 @@ public class Dialogue
         return dialogueList[dialoguePointer];
     }
 
-    public Dialogue()
+    public Dialogue(List<AbstractDialogue> list)
     {
         dialoguePointer = 0;
-        dialogueList = new List<AbstractDialogue>();
+        dialogueList = list;
     }
 
     //constructing methods, only to be used while parsing the Dialogue.
@@ -151,6 +155,7 @@ public class DialogueSystem : MonoBehaviour
 {
     [SerializeField][Tooltip("relative path to the dialogue text file from StreamingAssets folder")] String relativePath;
     [SerializeField] GameObject dialogueBox;
+    [SerializeField] List<TriggerableEvent> eventList;
     Dictionary<string, Dialogue> dialogueDict;
 
     void Awake()
@@ -163,10 +168,40 @@ public class DialogueSystem : MonoBehaviour
 
         ImportDialogue(File.ReadAllLines(Application.streamingAssetsPath + relativePath).ToList());
     }
-    
+
+    AbstractDialogue parseDialogue(char type, string content)
+    {
+        switch (type)
+        {
+
+            case '-':
+                return new DialogueLine(content, false);
+            case '+':
+                return new DialogueLine(content, true);
+            case 'G':
+            case 'g':
+                int pointer;
+                if (!int.TryParse(content, out pointer))
+                    throw new Exception("G or g command used without valid dialogue index.");
+                return new DialogueGoTo(type == 'g', pointer);
+            case 'S':
+            case 's':
+                return new DialogueSceneTransition(content);
+            case 'T':
+            case 't':
+                int index;
+                if (!int.TryParse(content, out index))
+                    throw new Exception("T command used without valid event index");
+                return new DialogueEvent(eventList[index]);
+            default:
+                Debug.Log(String.Format("Improper dialogue type in {0}, this was treated as regular dialogue.", relativePath));
+                goto case '-';
+        }
+    }
+
     void ImportDialogue(List<String> dialogues)
     {
-        Dialogue currentDialogue = null;
+        List<AbstractDialogue> currentDialogue = new List<AbstractDialogue>();
         for(int i = 0; i < dialogues.Count; i++)
         {
             if (string.IsNullOrEmpty(dialogues[i])) continue;
@@ -177,12 +212,29 @@ public class DialogueSystem : MonoBehaviour
             switch(firstLetter)
             {
                 case '=':
-                    currentDialogue = new Dialogue();
-                    dialogueDict.Add(content, currentDialogue);
+                    dialogueDict.Add(content, new Dialogue(currentDialogue));
+                    currentDialogue = new List<AbstractDialogue>();
                     break;
                 case 'Q':
                 case 'q':
+                    Question now = new Question(content);
+                    int answersSize = 0;
+                    for (; answersSize + i + 1 < dialogues.Count; answersSize++)
+                    {
+                        if ("Aa".IndexOf(dialogues[answersSize + i + 1][0])<0)
+                            break;
+                    }
+                    for(int j = 1; j + i < dialogues.Count; j++)
+                    {
+                        //todo question choice parsing
+                    }
 
+
+
+                    break;
+                default:
+                    currentDialogue.Add(parseDialogue(firstLetter, content));
+                    break;
             }
         }
     }
