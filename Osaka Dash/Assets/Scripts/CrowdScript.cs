@@ -6,11 +6,11 @@ public class CrowdScript : MonoBehaviour
 {
 
     Rigidbody2D rb;
-    float speed = 2.2f;
+    float speed = 4.3f;
     private Vector2 ogPos;
-    bool frozen = false;
+    public bool frozen = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         ogPos = transform.position;
@@ -26,7 +26,8 @@ public class CrowdScript : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Player"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PlayerMove>().resetPos();
+            resetPos();
         }
         else speed *= -1;
     }

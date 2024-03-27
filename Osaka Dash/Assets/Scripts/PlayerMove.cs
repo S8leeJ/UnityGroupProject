@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     float horizontal;
     private Vector2 ogPos;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         ogPos = transform.position;
@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            RaycastHit2D hit = Physics2D.Raycast(rb.position + Vector2.up * 0.2f, Vector2.right, 3f, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit = Physics2D.Raycast(rb.position + Vector2.up * 0.2f, transform.rotation.y == 0 ? Vector2.right : Vector2.left, 3f, LayerMask.GetMask("Ground"));
             if (hit.collider != null) {
                 if (hit.collider.GetComponent<CrowdScript>() != null)
                 {
@@ -38,6 +38,7 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void resetPos()
