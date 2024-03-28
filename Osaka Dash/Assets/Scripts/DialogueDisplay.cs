@@ -8,6 +8,7 @@ public class DialogueDisplay : MonoBehaviour
 {
     [Tooltip("Choice boxes should be in the list from left-to-right, then up-to-down")][SerializeField] List<DialogueQuestion> questionSelection;
     [SerializeField] Tuple<int,int> choiceGridSize;
+    [SerializeField] bool wipeQuestionWhenShowingChoices;
     [Tooltip("The duration (in seconds) to wait between characters")][SerializeField] const float textSpeed = 0.5f;
     string text;
     float textTimer;
@@ -62,8 +63,17 @@ public class DialogueDisplay : MonoBehaviour
         this.text += text;
     }
 
+    public bool finishText()
+    {
+        if (textIndex == text.Length) return true;
+        textIndex = text.Length;
+        return false;
+    }
+
     public void displayQuestion(DialogueSystem caller,List<String> questionTexts)
     {
+        if (wipeQuestionWhenShowingChoices)
+            setText("");
         this.caller = caller;
         for (int i = 0; i < questionTexts.Count && i < questionSelection.Count; i++)
         {

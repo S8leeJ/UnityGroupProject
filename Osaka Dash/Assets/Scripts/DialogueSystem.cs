@@ -22,7 +22,7 @@ public abstract class AbstractDialogue
     public virtual List<string> getQuestionChoices() { return null; }
     public abstract int getType();
     public virtual TriggerableEvent getEvent() { return null; }
-    //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index, 4 = trigger event, 5 = scene transition
+    //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index or jump, 4 = trigger event, 5 = scene transition
     public virtual int getChoiceGoTo(int i) { return -1; }
 
 }
@@ -85,18 +85,20 @@ public class DialogueEvent : AbstractDialogue
 public class DialogueGoTo : AbstractDialogue
 {
     bool endDialogue;
+    bool isRelative;
     int indexToGo;
 
     public override string getText()
     {
-        return endDialogue ? "1" + indexToGo : "0" + indexToGo;
+        return ((isRelative ? 1 : 0) + (endDialogue ? 2 : 0)).ToString() + indexToGo;
     }
     public override int getType() { return 3; }
 
-    public DialogueGoTo(bool endDialogue, int indexToGo)
+    public DialogueGoTo(bool endDialogue, int indexToGo, bool isRelative)
     {
         this.endDialogue = endDialogue;
         this.indexToGo = indexToGo;
+        this.isRelative = isRelative;
     }
 }
 
@@ -154,9 +156,12 @@ public class Dialogue
 public class DialogueSystem : MonoBehaviour
 {
     [SerializeField][Tooltip("relative path to the dialogue text file from StreamingAssets folder")] String relativePath;
-    [SerializeField] GameObject dialogueBox;
+    [SerializeField] DialogueDisplay dialogueBox;
     [SerializeField] List<TriggerableEvent> eventList;
     Dictionary<string, Dialogue> dialogueDict;
+    Dialogue nowDialogue;
+
+    public static DialogueSystem instance { get; private set; }
 
     void Awake()
     {
@@ -180,10 +185,12 @@ public class DialogueSystem : MonoBehaviour
                 return new DialogueLine(content, true);
             case 'G':
             case 'g':
+            case 'J':
+            case 'j':
                 int pointer;
                 if (!int.TryParse(content, out pointer))
-                    throw new Exception("G or g command used without valid dialogue index.");
-                return new DialogueGoTo(type == 'g', pointer);
+                    throw new Exception("G, g, J, or j command used without valid dialogue index.");
+                return new DialogueGoTo("GJ".IndexOf(type) < 0, pointer, "Gg".IndexOf(type) < 0);
             case 'S':
             case 's':
                 return new DialogueSceneTransition(content);
@@ -198,7 +205,6 @@ public class DialogueSystem : MonoBehaviour
                 goto case '-';
         }
     }
-
     void ImportDialogue(List<String> dialogues)
     {
         List<AbstractDialogue> currentDialogue = new List<AbstractDialogue>();
@@ -212,6 +218,7 @@ public class DialogueSystem : MonoBehaviour
             switch(firstLetter)
             {
                 case '=':
+                    currentDialogue.Add(new DialogueGoTo(true, 0, false));
                     dialogueDict.Add(content, new Dialogue(currentDialogue));
                     currentDialogue = new List<AbstractDialogue>();
                     break;
@@ -226,11 +233,17 @@ public class DialogueSystem : MonoBehaviour
                     }
                     for(int j = 1; j + i < dialogues.Count; j++)
                     {
-                        //todo question choice parsing
+                        if (dialogues[i + j][0] == 'A')
+                        {
+                            now.addAnswer(dialogues[i + j].Substring(2), j);
+                            if (j != 1)
+                                currentDialogue.Add(new DialogueGoTo(false, answersSize - j, true));
+                        }
+                        else if (dialogues[i + j][0] == 'a')
+                            currentDialogue.Add(parseDialogue(dialogues[i + j][1], dialogues[i + j].Substring(2)));
+                        else
+                            break;
                     }
-
-
-
                     break;
                 default:
                     currentDialogue.Add(parseDialogue(firstLetter, content));
@@ -239,13 +252,68 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public void goNext()
+    void Update()
     {
-        
+        if (!PauseSystem.isInDialogue) return;
+
+        AbstractDialogue now = nowDialogue.Now();
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (dialogueBox.finishText())
+            {
+                switch (now.getType())
+                {
+                    case 0:
+                        dialogueBox.setText(now.getText());
+                        break;
+                    case 1:
+                        dialogueBox.addText(now.getText());
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        string temp = now.getText();
+                        switch (temp[0])
+                        {
+                            case '0':
+                                nowDialogue.Go(int.Parse(temp.Substring(1)));
+                                break;
+                            case '1':
+                                nowDialogue.Advance(int.Parse(temp.Substring(1)));
+                                break;
+                            case '2':
+                                nowDialogue.Go(int.Parse(temp.Substring(1)));
+                                goto default;
+                            case '3':
+                                nowDialogue.Advance(int.Parse(temp.Substring(1)));
+                                goto default;
+                            default:
+                                PauseSystem.DialogueEnd();
+                                break;
+                        }
+                        break;
+                    case 4:
+                        now.getEvent().Trigger();
+                        break;
+                    case 5:
+                        //scene transition;
+                        break;
+                }
+            }
+        }
+    }
+
+    public void TriggerDialogue(string name)
+    {
+        if (!dialogueDict.ContainsKey(name))
+            throw new System.Exception(string.Format("Invalid dialogue name: {0}", name));
+        PauseSystem.DialogueStart();
+        nowDialogue = dialogueDict[name];
     }
 
     public void AnswerGiven(int answerChoice)
     {
-
+        nowDialogue.Advance(nowDialogue.Now().getChoiceGoTo(answerChoice));
     }
 }

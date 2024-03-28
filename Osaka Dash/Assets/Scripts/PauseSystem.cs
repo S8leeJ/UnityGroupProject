@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PauseSystem : MonoBehaviour
 {
-    static bool isInMinigame, isInDialogue, isInTransition;
+    public static bool isInMinigame { get; private set; }
+    public static bool isInDialogue { get; private set; }
+    public static bool isInTransition { get; private set; }
     
     public static bool isPaused()
     {
