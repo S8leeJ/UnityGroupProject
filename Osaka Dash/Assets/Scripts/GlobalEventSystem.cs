@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PauseSystem : MonoBehaviour
+public class GlobalEventSystem : MonoBehaviour
 {
     public static bool isInMinigame { get; private set; }
     public static bool isInDialogue { get; private set; }
@@ -19,4 +20,14 @@ public class PauseSystem : MonoBehaviour
     public static void DialogueEnd() { isInDialogue = false; }
     public static void TransitionStart() { isInTransition = true; }
     public static void TransitionEnd() { isInTransition = false; }
+
+    public static void SceneTransition(int sceneID)
+    {
+        SceneManager.LoadScene(sceneID, LoadSceneMode.Single);
+    }
+
+    public static void SceneTransition(string name)
+    {
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
+    }
 }

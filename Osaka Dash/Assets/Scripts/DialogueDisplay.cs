@@ -7,7 +7,7 @@ using UnityEngine;
 public class DialogueDisplay : MonoBehaviour
 {
     [Tooltip("Choice boxes should be in the list from left-to-right, then up-to-down")][SerializeField] List<DialogueQuestion> questionSelection;
-    [SerializeField] Tuple<int,int> choiceGridSize;
+    [SerializeField] int choiceGridSizeX,choiceGridSizeY;
     [SerializeField] bool wipeQuestionWhenShowingChoices;
     [Tooltip("The duration (in seconds) to wait between characters")][SerializeField] const float textSpeed = 0.5f;
     string text;
@@ -24,20 +24,20 @@ public class DialogueDisplay : MonoBehaviour
         textbox = GetComponent<TextMeshProUGUI>();
         if(textbox == null) textbox = GetComponentInChildren<TextMeshProUGUI>();
 
-        for(int i = 0; i < choiceGridSize.Item1; i++)
+        for(int i = 0; i < choiceGridSizeX; i++)
         {
-            for (int j = 0; j < choiceGridSize.Item2; j++)
+            for (int j = 0; j < choiceGridSizeY; j++)
             {
-                DialogueQuestion now = questionSelection[i * choiceGridSize.Item2 + j];
-                if (choiceGridSize.Item2 != 1)
+                DialogueQuestion now = questionSelection[i * choiceGridSizeY + j];
+                if (choiceGridSizeY != 1)
                 {
-                    if (j == choiceGridSize.Item2 - 1) now.setRight(questionSelection[(i - 1) * choiceGridSize.Item2 + j + 1]);
-                    else now.setRight(questionSelection[i * choiceGridSize.Item2 + j + 1]);
+                    if (j == choiceGridSizeY - 1) now.setRight(questionSelection[(i - 1) * choiceGridSizeY + j + 1]);
+                    else now.setRight(questionSelection[i * choiceGridSizeY + j + 1]);
                 }
-                if(choiceGridSize.Item1 != 1)
+                if(choiceGridSizeX != 1)
                 {
-                    if (i == choiceGridSize.Item1 - 1) now.setDown(questionSelection[j]);
-                    else now.setDown(questionSelection[(i + 1) * choiceGridSize.Item2 + j]);
+                    if (i == choiceGridSizeX - 1) now.setDown(questionSelection[j]);
+                    else now.setDown(questionSelection[(i + 1) * choiceGridSizeY + j]);
                 }
             }
         }
@@ -52,10 +52,10 @@ public class DialogueDisplay : MonoBehaviour
         }
     }
 
-    public void setText(string text)
+    public void Wipe()
     {
         textIndex = 0;
-        this.text = text;
+        this.text = "";
     }
 
     public void addText(string text)
@@ -73,7 +73,7 @@ public class DialogueDisplay : MonoBehaviour
     public void displayQuestion(DialogueSystem caller,List<String> questionTexts)
     {
         if (wipeQuestionWhenShowingChoices)
-            setText("");
+            Wipe();
         this.caller = caller;
         for (int i = 0; i < questionTexts.Count && i < questionSelection.Count; i++)
         {

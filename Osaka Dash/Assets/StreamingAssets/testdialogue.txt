@@ -1,0 +1,23 @@
+- Lorem Ipsum Dolor sit amet,\nthis is some test dialogue.
++ \nAdding on dialogue
+Q Sample Question
+A answer 1
+a-some answer 1 text
+a-more answer 1 text
+aT0
+A answer 2
+A answer 3
+aG0
+A answer 4
+ag1
+A answer 5
+- more test dialogue
+T 0
+Q Sample Question 2
+A answer 1
+A answer 2
+Q Sample Question 3
+A answer 1
+A answer 2
+A answer 3
+= Test Dialogue

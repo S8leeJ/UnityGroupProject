@@ -17,6 +17,9 @@ public class DialogueQuestion : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
+        textbox=GetComponent<TextMeshProUGUI>();
+        if (textbox == null)
+            textbox = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()

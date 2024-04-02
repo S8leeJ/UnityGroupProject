@@ -33,7 +33,7 @@ public class DialogueLine : AbstractDialogue
     bool addOn;
     public override string getText() { return text; }
     public override int getType() { return addOn ? 0 : 1; }
-    public DialogueLine(string line) { text = line; }
+    public DialogueLine(string line) { text = line.Replace("\\n", "\n"); }
     public DialogueLine(string line, bool addOn) { text = line; this.addOn = addOn; }
 }
 
@@ -148,9 +148,6 @@ public class Dialogue
         dialoguePointer = 0;
         dialogueList = list;
     }
-
-    //constructing methods, only to be used while parsing the Dialogue.
-
 }
 
 public class DialogueSystem : MonoBehaviour
@@ -201,7 +198,7 @@ public class DialogueSystem : MonoBehaviour
                     throw new Exception("T command used without valid event index");
                 return new DialogueEvent(eventList[index]);
             default:
-                Debug.Log(String.Format("Improper dialogue type in {0}, this was treated as regular dialogue.", relativePath));
+                Debug.Log(String.Format("Improper dialogue type {1} in {0}, this was treated as regular dialogue.", relativePath, type));
                 goto case '-';
         }
     }
@@ -225,13 +222,14 @@ public class DialogueSystem : MonoBehaviour
                 case 'Q':
                 case 'q':
                     Question now = new Question(content);
+                    currentDialogue.Add(now);
                     int answersSize = 0;
                     for (; answersSize + i + 1 < dialogues.Count; answersSize++)
                     {
                         if ("Aa".IndexOf(dialogues[answersSize + i + 1][0])<0)
                             break;
                     }
-                    for(int j = 1; j + i < dialogues.Count; j++)
+                    for(int j = 1; j <= answersSize; j++)
                     {
                         if (dialogues[i + j][0] == 'A')
                         {
@@ -254,7 +252,7 @@ public class DialogueSystem : MonoBehaviour
 
     void Update()
     {
-        if (!PauseSystem.isInDialogue) return;
+        if (!GlobalEventSystem.isInDialogue) return;
 
         AbstractDialogue now = nowDialogue.Now();
 
@@ -265,12 +263,15 @@ public class DialogueSystem : MonoBehaviour
                 switch (now.getType())
                 {
                     case 0:
-                        dialogueBox.setText(now.getText());
-                        break;
+                        dialogueBox.Wipe();
+                        goto case 1;
                     case 1:
                         dialogueBox.addText(now.getText());
+                        nowDialogue.Advance();
                         break;
                     case 2:
+                        dialogueBox.Wipe();
+                        dialogueBox.addText(now.getText());
                         break;
                     case 3:
                         string temp = now.getText();
@@ -289,7 +290,7 @@ public class DialogueSystem : MonoBehaviour
                                 nowDialogue.Advance(int.Parse(temp.Substring(1)));
                                 goto default;
                             default:
-                                PauseSystem.DialogueEnd();
+                                GlobalEventSystem.DialogueEnd();
                                 break;
                         }
                         break;
@@ -297,7 +298,11 @@ public class DialogueSystem : MonoBehaviour
                         now.getEvent().Trigger();
                         break;
                     case 5:
-                        //scene transition;
+                        int tempID;
+                        if (int.TryParse(now.getText(), out tempID))
+                            GlobalEventSystem.SceneTransition(tempID);
+                        else
+                            GlobalEventSystem.SceneTransition(now.getText());
                         break;
                 }
             }
@@ -308,7 +313,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (!dialogueDict.ContainsKey(name))
             throw new System.Exception(string.Format("Invalid dialogue name: {0}", name));
-        PauseSystem.DialogueStart();
+        GlobalEventSystem.DialogueStart();
         nowDialogue = dialogueDict[name];
     }
 
