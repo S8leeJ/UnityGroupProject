@@ -122,9 +122,9 @@ public class Dialogue
     public AbstractDialogue Advance(int i)
     {
         dialoguePointer += i;
-        for (; dialoguePointer >= dialogueList.Count; dialoguePointer -= dialogueList.Count) ;
         for (; dialoguePointer < 0; dialoguePointer += dialogueList.Count) ;
-        return dialogueList[++dialoguePointer];
+        dialoguePointer %= dialogueList.Count;
+        return dialogueList[dialoguePointer];
     }
     public AbstractDialogue Advance()
     {
@@ -168,6 +168,8 @@ public class DialogueSystem : MonoBehaviour
 
         if (dialogueBox == null) throw new Exception("no dialogue box specified");
 
+        dialogueDict = new Dictionary<string, Dialogue>();
+
         ImportDialogue(File.ReadAllLines(Application.streamingAssetsPath + relativePath).ToList());
     }
 
@@ -175,7 +177,6 @@ public class DialogueSystem : MonoBehaviour
     {
         switch (type)
         {
-
             case '-':
                 return new DialogueLine(content, false);
             case '+':
@@ -198,7 +199,7 @@ public class DialogueSystem : MonoBehaviour
                     throw new Exception("T command used without valid event index");
                 return new DialogueEvent(eventList[index]);
             default:
-                Debug.Log(String.Format("Improper dialogue type {1} in {0}, this was treated as regular dialogue.", relativePath, type));
+                Debug.Log(String.Format("Improper dialogue type {1} in {0}, this was treated as regular dialogue.\nContent of this dialogue was {2}.", relativePath, type, content));
                 goto case '-';
         }
     }
@@ -209,7 +210,6 @@ public class DialogueSystem : MonoBehaviour
         {
             if (string.IsNullOrEmpty(dialogues[i])) continue;
             char firstLetter = dialogues[i][0];
-            char secondLetter = dialogues[i][1];
             string content = dialogues[i].Substring(2);
             if(firstLetter!='='&&currentDialogue == null) { throw new Exception("No dialogue name specified"); }
             switch(firstLetter)
@@ -223,10 +223,10 @@ public class DialogueSystem : MonoBehaviour
                 case 'q':
                     Question now = new Question(content);
                     currentDialogue.Add(now);
-                    int answersSize = 0;
+                    int answersSize = 1;
                     for (; answersSize + i + 1 < dialogues.Count; answersSize++)
                     {
-                        if ("Aa".IndexOf(dialogues[answersSize + i + 1][0])<0)
+                        if ("Aa".IndexOf(dialogues[answersSize + i][0])<0)
                             break;
                     }
                     for(int j = 1; j <= answersSize; j++)
@@ -242,6 +242,7 @@ public class DialogueSystem : MonoBehaviour
                         else
                             break;
                     }
+                    i += answersSize - 1;
                     break;
                 default:
                     currentDialogue.Add(parseDialogue(firstLetter, content));
@@ -275,6 +276,7 @@ public class DialogueSystem : MonoBehaviour
                         break;
                     case 3:
                         string temp = now.getText();
+                        if (temp.Length == 0) throw new SystemException("wtf");
                         switch (temp[0])
                         {
                             case '0':
@@ -314,6 +316,7 @@ public class DialogueSystem : MonoBehaviour
         if (!dialogueDict.ContainsKey(name))
             throw new System.Exception(string.Format("Invalid dialogue name: {0}", name));
         GlobalEventSystem.DialogueStart();
+        dialogueBox.Enable();
         nowDialogue = dialogueDict[name];
     }
 

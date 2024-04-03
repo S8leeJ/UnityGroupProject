@@ -9,8 +9,8 @@ public class DialogueDisplay : MonoBehaviour
     [Tooltip("Choice boxes should be in the list from left-to-right, then up-to-down")][SerializeField] List<DialogueQuestion> questionSelection;
     [SerializeField] int choiceGridSizeX,choiceGridSizeY;
     [SerializeField] bool wipeQuestionWhenShowingChoices;
-    [Tooltip("The duration (in seconds) to wait between characters")][SerializeField] const float textSpeed = 0.5f;
-    string text;
+    [Tooltip("The duration (in seconds) to wait between characters")][SerializeField] float textSpeed = 0.5f;
+    string text = "";
     float textTimer;
     int textIndex;
     DialogueSystem caller;
@@ -28,6 +28,8 @@ public class DialogueDisplay : MonoBehaviour
         {
             for (int j = 0; j < choiceGridSizeY; j++)
             {
+                if (questionSelection.Count < i * choiceGridSizeY + j)
+                    break;
                 DialogueQuestion now = questionSelection[i * choiceGridSizeY + j];
                 if (choiceGridSizeY != 1)
                 {
@@ -45,11 +47,17 @@ public class DialogueDisplay : MonoBehaviour
 
     private void Update()
     {
-        if (textTimer > textSpeed)
+        if (text == null || text.Length == 0) textbox.SetText("");
+        else if (textTimer > textSpeed)
         {
             if(textIndex<text.Length) { textIndex++; }
             textbox.SetText(text.Substring(0, textIndex));
         }
+    }
+
+    public void Enable()
+    {
+        gameObject.SetActive(true);
     }
 
     public void Wipe()
@@ -65,6 +73,7 @@ public class DialogueDisplay : MonoBehaviour
 
     public bool finishText()
     {
+        if (text == null || text.Length == 0) return true;
         if (textIndex == text.Length) return true;
         textIndex = text.Length;
         return false;

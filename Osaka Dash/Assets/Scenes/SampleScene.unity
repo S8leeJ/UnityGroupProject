@@ -1445,6 +1445,7 @@ MonoBehaviour:
   choiceGridSizeX: 3
   choiceGridSizeY: 3
   wipeQuestionWhenShowingChoices: 1
+  textSpeed: 0.1
 --- !u!114 &115464802
 MonoBehaviour:
   m_ObjectHideFlags: 0

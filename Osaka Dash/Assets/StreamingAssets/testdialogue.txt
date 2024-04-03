@@ -1,4 +1,10 @@
 - Lorem Ipsum Dolor sit amet,\nthis is some test dialogue.
++ Adding Text
+- Wiping text
+= Test Dialogue
+
+
+
 + \nAdding on dialogue
 Q Sample Question
 A answer 1
@@ -20,4 +26,4 @@ Q Sample Question 3
 A answer 1
 A answer 2
 A answer 3
-= Test Dialogue
+= Questions Test
