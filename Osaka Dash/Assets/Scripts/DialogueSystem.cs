@@ -32,7 +32,7 @@ public class DialogueLine : AbstractDialogue
     string text;
     bool addOn;
     public override string getText() { return text; }
-    public override int getType() { return addOn ? 0 : 1; }
+    public override int getType() { return addOn ? 1 : 0; }
     public DialogueLine(string line) { text = line.Replace("\\n", "\n"); }
     public DialogueLine(string line, bool addOn) { text = line; this.addOn = addOn; }
 }
@@ -157,6 +157,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] List<TriggerableEvent> eventList;
     Dictionary<string, Dialogue> dialogueDict;
     Dialogue nowDialogue;
+    bool askingQuestion = false;
 
     public static DialogueSystem instance { get; private set; }
 
@@ -255,58 +256,68 @@ public class DialogueSystem : MonoBehaviour
     {
         if (!GlobalEventSystem.isInDialogue) return;
 
-        AbstractDialogue now = nowDialogue.Now();
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (dialogueBox.finishText())
+            AdvanceDialogue();
+        }
+    }
+
+    public void AdvanceDialogue()
+    {
+        AbstractDialogue now = nowDialogue.Now();
+        if (dialogueBox.finishText())
+        {
+            switch (now.getType())
             {
-                switch (now.getType())
-                {
-                    case 0:
+                case 0:
+                    dialogueBox.Wipe();
+                    goto case 1;
+                case 1:
+                    dialogueBox.addText(now.getText());
+                    nowDialogue.Advance();
+                    break;
+                case 2:
+                    if (!askingQuestion)
+                    {
                         dialogueBox.Wipe();
-                        goto case 1;
-                    case 1:
                         dialogueBox.addText(now.getText());
-                        nowDialogue.Advance();
-                        break;
-                    case 2:
-                        dialogueBox.Wipe();
-                        dialogueBox.addText(now.getText());
-                        break;
-                    case 3:
-                        string temp = now.getText();
-                        if (temp.Length == 0) throw new SystemException("wtf");
-                        switch (temp[0])
-                        {
-                            case '0':
-                                nowDialogue.Go(int.Parse(temp.Substring(1)));
-                                break;
-                            case '1':
-                                nowDialogue.Advance(int.Parse(temp.Substring(1)));
-                                break;
-                            case '2':
-                                nowDialogue.Go(int.Parse(temp.Substring(1)));
-                                goto default;
-                            case '3':
-                                nowDialogue.Advance(int.Parse(temp.Substring(1)));
-                                goto default;
-                            default:
-                                GlobalEventSystem.DialogueEnd();
-                                break;
-                        }
-                        break;
-                    case 4:
-                        now.getEvent().Trigger();
-                        break;
-                    case 5:
-                        int tempID;
-                        if (int.TryParse(now.getText(), out tempID))
-                            GlobalEventSystem.SceneTransition(tempID);
-                        else
-                            GlobalEventSystem.SceneTransition(now.getText());
-                        break;
-                }
+                        askingQuestion = true;
+                    }
+                    else
+                        dialogueBox.displayQuestion(this, now.getQuestionChoices());
+                    break;
+                case 3:
+                    string temp = now.getText();
+                    switch (temp[0])
+                    {
+                        case '0':
+                            nowDialogue.Go(int.Parse(temp.Substring(1)));
+                            break;
+                        case '1':
+                            nowDialogue.Advance(int.Parse(temp.Substring(1)));
+                            break;
+                        case '2':
+                            nowDialogue.Go(int.Parse(temp.Substring(1)));
+                            goto default;
+                        case '3':
+                            nowDialogue.Advance(int.Parse(temp.Substring(1)));
+                            goto default;
+                        default:
+                            GlobalEventSystem.DialogueEnd();
+                            break;
+                    }
+                    break;
+                case 4:
+                    now.getEvent().Trigger();
+                    break;
+                case 5:
+                    int tempID;
+                    if (int.TryParse(now.getText(), out tempID))
+                        GlobalEventSystem.SceneTransition(tempID);
+                    else
+                        GlobalEventSystem.SceneTransition(now.getText());
+                    break;
             }
         }
     }
@@ -318,10 +329,13 @@ public class DialogueSystem : MonoBehaviour
         GlobalEventSystem.DialogueStart();
         dialogueBox.Enable();
         nowDialogue = dialogueDict[name];
+        AdvanceDialogue();
     }
 
     public void AnswerGiven(int answerChoice)
     {
+        askingQuestion = false;
         nowDialogue.Advance(nowDialogue.Now().getChoiceGoTo(answerChoice));
+        AdvanceDialogue();
     }
 }

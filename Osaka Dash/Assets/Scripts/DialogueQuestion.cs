@@ -25,12 +25,6 @@ public class DialogueQuestion : MonoBehaviour
     private void Update()
     {
         selectedGraphic.SetActive(isSelected);
-        if (!isSelected) return;
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            //select answer sound effect here
-            Parent.AnswerGiven(choiceID);
-        }
     }
 
     public void displayChoice(string text,int ID)
@@ -40,53 +34,27 @@ public class DialogueQuestion : MonoBehaviour
         textbox.SetText(text);
     }
 
-    public void setChoice()
+    public void hideChoice()
     {
+        gameObject.SetActive(false);
+        isSelected = false;
+    }
+
+    public bool setChoice()
+    {
+        if (!gameObject.activeSelf) return false;
         //change selection sound effect here
         isSelected = true;
+        return true;
     }
 
-    protected void setUp(DialogueQuestion question) { up = question; }
-    public void setDown(DialogueQuestion question) { 
-        down = question;
-        down.setUp(this);
-    }
-    protected void setLeft(DialogueQuestion question) { left = question; }
-    public void setRight(DialogueQuestion question) { 
-        right = question;
-        right.setLeft(this);
-    }
-    public void goUp()
+    public void deselect()
     {
-        if (up == null) return;
         isSelected = false;
-        up.setChoice();
-        if (up.gameObject.activeSelf == false) up.goUp();
-        return;
     }
-    public void goDown()
-    {
-        if (down == null) return;
 
-        isSelected = false;
-        down.setChoice();
-        if (down.gameObject.activeSelf == false) down.goDown();
-        return;
-    }
-    public void goLeft()
+    public void setParent(DialogueDisplay parent)
     {
-        if (left == null) return;
-        isSelected = false;
-        left.setChoice();
-        if (left.gameObject.activeSelf == false) left.goLeft();
-        return;
-    }
-    public void goRight()
-    {
-        if (right == null) return;
-        isSelected = false;
-        right.setChoice();
-        if (right.gameObject.activeSelf == false) right.goRight();
-        return;
+        Parent = parent;
     }
 }

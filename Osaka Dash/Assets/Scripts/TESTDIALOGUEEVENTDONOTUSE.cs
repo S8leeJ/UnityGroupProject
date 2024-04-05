@@ -16,7 +16,7 @@ public class TESTDIALOGUEEVENTDONOTUSE : TriggerableEvent
         if (GlobalEventSystem.isPaused()) return;
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GetComponent<DialogueSystem>().TriggerDialogue("Test Dialogue");
+            GetComponent<DialogueSystem>().TriggerDialogue("Questions Test");
         }
     }
 
