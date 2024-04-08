@@ -157,7 +157,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] List<TriggerableEvent> eventList;
     Dictionary<string, Dialogue> dialogueDict;
     Dialogue nowDialogue;
-    bool askingQuestion = false;
+    int askingQuestion = 0;
 
     public static DialogueSystem instance { get; private set; }
 
@@ -278,14 +278,21 @@ public class DialogueSystem : MonoBehaviour
                     nowDialogue.Advance();
                     break;
                 case 2:
-                    if (!askingQuestion)
+                    switch (askingQuestion)
                     {
-                        dialogueBox.Wipe();
-                        dialogueBox.addText(now.getText());
-                        askingQuestion = true;
-                    }
-                    else
-                        dialogueBox.displayQuestion(this, now.getQuestionChoices());
+                        case 0:
+                            dialogueBox.Wipe();
+                            dialogueBox.addText(now.getText());
+                            askingQuestion = 1;
+                            break;
+                        case 1:
+                            dialogueBox.displayQuestion(this, now.getQuestionChoices());
+                            askingQuestion = 2;
+                            break;
+                        case 2:
+                            dialogueBox.getChoice();
+                            break;
+                    }                        
                     break;
                 case 3:
                     string temp = now.getText();
@@ -310,6 +317,7 @@ public class DialogueSystem : MonoBehaviour
                     break;
                 case 4:
                     now.getEvent().Trigger();
+                    nowDialogue.Advance();
                     break;
                 case 5:
                     int tempID;
@@ -334,7 +342,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void AnswerGiven(int answerChoice)
     {
-        askingQuestion = false;
+        askingQuestion = 0;
         nowDialogue.Advance(nowDialogue.Now().getChoiceGoTo(answerChoice));
         AdvanceDialogue();
     }

@@ -81,12 +81,6 @@ public class DialogueDisplay : MonoBehaviour
                     selected = nextSelection;
                 }*/
 
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                AnswerGiven(selected.Item1 * choiceGridSizeX + selected.Item2);
-                return;
-            }
-
             int flag =
                 (Input.GetKeyDown(KeyCode.UpArrow) ? 8 : 0) |
                 (Input.GetKeyDown(KeyCode.LeftArrow) ? 4 : 0) |
@@ -159,4 +153,9 @@ public class DialogueDisplay : MonoBehaviour
         caller.AnswerGiven(choice);
     }
 
+    public void getChoice()
+    {
+        AnswerGiven(selected.Item1 * choiceGridSizeX + selected.Item2);
+        return;
+    }
 }
