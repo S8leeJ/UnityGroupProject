@@ -6,8 +6,10 @@ public class PlayerMove : MonoBehaviour
 {
     Rigidbody2D rb;
     public int speed = 10, jump = 10;
+    [SerializeField] int objectsLeft;
     float horizontal;
     private Vector2 ogPos;
+    public GameObject overworldPlayer;
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,5 +46,28 @@ public class PlayerMove : MonoBehaviour
     public void resetPos()
     {
         transform.position = ogPos;
+    }
+
+    public void setObjectsLeft(int obj)
+    {
+        objectsLeft = obj;
+    }
+
+    public void setPos(Vector2 pos)
+    {
+        transform.position = pos;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Collectible"))
+        {
+            Destroy(collision.gameObject);
+            objectsLeft--;
+            if (objectsLeft == 0)
+            {
+                overworldPlayer.GetComponent<OverworldMovement>().nextStage();
+            }
+        }
     }
 }
