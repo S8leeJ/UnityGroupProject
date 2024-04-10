@@ -312,6 +312,7 @@ public class DialogueSystem : MonoBehaviour
                             goto default;
                         default:
                             GlobalEventSystem.DialogueEnd();
+                            dialogueBox.endDialogue();
                             break;
                     }
                     break;

@@ -141,6 +141,11 @@ public class DialogueDisplay : MonoBehaviour
         showQuestion = true;
     }
 
+    public void endDialogue()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void AnswerGiven(int choice)
     {
         showQuestion = false;
