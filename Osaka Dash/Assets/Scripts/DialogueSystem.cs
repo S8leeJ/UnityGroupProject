@@ -311,14 +311,14 @@ public class DialogueSystem : MonoBehaviour
                             nowDialogue.Advance(int.Parse(temp.Substring(1)));
                             goto default;
                         default:
-                            GlobalEventSystem.DialogueEnd();
-                            dialogueBox.endDialogue();
+                            endDialogue();
                             break;
                     }
                     break;
                 case 4:
                     now.getEvent().Trigger();
-                    nowDialogue.Advance();
+                    endDialogue();
+                    //nowDialogue.Advance();
                     break;
                 case 5:
                     int tempID;
@@ -346,5 +346,11 @@ public class DialogueSystem : MonoBehaviour
         askingQuestion = 0;
         nowDialogue.Advance(nowDialogue.Now().getChoiceGoTo(answerChoice));
         AdvanceDialogue();
+    }
+
+    public void endDialogue()
+    {
+        GlobalEventSystem.DialogueEnd();
+        dialogueBox.endDialogue();
     }
 }
