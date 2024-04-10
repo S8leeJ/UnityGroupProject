@@ -42,11 +42,11 @@ public class OverworldMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.DownArrow)) facing[1] = -1;
         if (Input.GetKeyDown(KeyCode.X))
         {
-            RaycastHit2D hit = Physics2D.Raycast(rb.position, new Vector2(facing[0], facing[1]), 3f, LayerMask.GetMask("NPC"));
+            RaycastHit2D hit = Physics2D.Raycast(rb.position, new Vector2(facing[0], facing[1]), 4.5f, LayerMask.GetMask("NPC"));
 
             if (hit.collider != null)
             {
-                dialogue.triggerDialogue();
+                dialogue.triggerDialogue("c");
             }
         }
     }
