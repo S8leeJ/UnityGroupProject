@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GlobalEventSystem : MonoBehaviour
+public static class GlobalEventSystem
 {
     public static bool isInMinigame { get; private set; }
     public static bool isInDialogue { get; private set; }
