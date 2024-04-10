@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueHimeji : TriggerableEvent
 {
-    
+    public GameObject player;
 
     // Start is called before the first frame update
     public void triggerDialogue()
@@ -14,6 +14,7 @@ public class DialogueHimeji : TriggerableEvent
     
     public override void Trigger()
     {
+        player.GetComponent<OverworldMovement>().mg1();
         Debug.Log("successfully triggered event");
     }
 }

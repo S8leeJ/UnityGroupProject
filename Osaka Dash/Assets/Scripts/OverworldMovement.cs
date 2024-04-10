@@ -28,9 +28,11 @@ public class OverworldMovement : MonoBehaviour
         dialogue = GetComponent<DialogueHimeji>();
     }
 
+    public int getStage() {  return stage; }
     // Update is called once per frame
     void Update()
     {
+        if(GlobalEventSystem.isPaused()) { return; }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         if(!frozen) rb.velocity = new Vector2(horizontal * 7.0f, vertical * 7.0f);
@@ -54,7 +56,7 @@ public class OverworldMovement : MonoBehaviour
         if (collision.gameObject.name.Equals("Tour Guide"))
         {
             if (stage == 1) {
-                minigamePlayer.SetActive(true);
+                /*minigamePlayer.SetActive(true);
                 minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
                 frozen = true;
                 minigame1objs[0].SetActive(true);
@@ -62,7 +64,7 @@ public class OverworldMovement : MonoBehaviour
                 cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
                 cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
                 transform.position = new Vector2(105, 31);
-                stage++;
+                stage++;*/
             } else if (stage == 2)
             {
                 minigamePlayer.SetActive(true);
@@ -76,6 +78,19 @@ public class OverworldMovement : MonoBehaviour
                 transform.position = new Vector2(382, 25);
             }
         }
+    }
+
+    public void mg1()
+    {
+        minigamePlayer.SetActive(true);
+        minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
+        frozen = true;
+        minigame1objs[0].SetActive(true);
+        minigame1objs[1].SetActive(true);
+        cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
+        cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
+        transform.position = new Vector2(105, 31);
+        stage++;
     }
 
     public void nextStage()
