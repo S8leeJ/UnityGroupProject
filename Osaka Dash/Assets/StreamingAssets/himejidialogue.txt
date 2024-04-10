@@ -1,0 +1,9 @@
+- Welcome to Himeji Castle
+Q Where is your ticket
+A Let me find one
+a-Get a ticket and then come back
+ag0
+A I don't have one
+a-You can't enter
+ag0
+= c

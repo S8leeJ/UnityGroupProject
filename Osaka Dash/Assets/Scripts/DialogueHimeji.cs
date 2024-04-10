@@ -9,7 +9,7 @@ public class DialogueHimeji : TriggerableEvent
     // Start is called before the first frame update
     public void triggerDialogue()
     {
-        GetComponent<DialogueSystem>().TriggerDialogue("Questions Test");
+        GetComponent<DialogueSystem>().TriggerDialogue("c");
     }
     
     public override void Trigger()

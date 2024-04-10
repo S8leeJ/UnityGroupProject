@@ -4091,7 +4091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939877446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.4, y: 32.4, z: 0}
+  m_LocalPosition: {x: -40.47, y: 32.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4156,7 +4156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relativePath: testdialogue.txt
+  relativePath: himejidialogue.txt
   dialogueBox: {fileID: 260066250}
   eventList:
   - {fileID: 939877453}
@@ -21983,7 +21983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342341575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.4, y: 32.4, z: -10}
+  m_LocalPosition: {x: -40.47, y: 32.38, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 582985941}
@@ -28138,7 +28138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705907149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.64435, y: 33.533043, z: -10}
+  m_LocalPosition: {x: -49.00073, y: 33.533043, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
