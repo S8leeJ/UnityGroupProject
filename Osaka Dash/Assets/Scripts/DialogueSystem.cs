@@ -322,6 +322,7 @@ public class DialogueSystem : MonoBehaviour
                     break;
                 case 5:
                     int tempID;
+                    endDialogue();
                     if (int.TryParse(now.getText(), out tempID))
                         GlobalEventSystem.SceneTransition(tempID);
                     else
