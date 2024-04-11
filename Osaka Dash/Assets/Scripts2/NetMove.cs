@@ -54,10 +54,14 @@ public class NetMove : MonoBehaviour
         if (fishCount >= 5)
         {
             Debug.Log("Fish all caught");
-            //next.Setup();
-           // SceneManager.LoadScene("SampleScene");
-            SceneManager.LoadScene("GoldfishScoopL2");
+           
 
+        if (SceneManager.GetActiveScene().name == "GoldfishScoopL2"){
+            SceneManager.LoadScene("Sumiyoshi Taisha");
+        }
+        else{
+            SceneManager.LoadScene("GoldfishScoopL2");
+        }
         }
         if (Input.GetKeyDown(KeyCode.Space) && !isRotating)
         {

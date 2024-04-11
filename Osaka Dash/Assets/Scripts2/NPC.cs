@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
     public float displayTime = 4.0f;
     public GameObject dialogBox;
     float timerDisplay;
+    public string dialogueName;
 
     void Start()
     {
@@ -28,8 +29,8 @@ public class NPC : MonoBehaviour
 
     public void DisplayDialog()
     {
-        /*timerDisplay = displayTime;
-        dialogBox.SetActive(true);*/
-        GetComponent<DialogueSystem>().TriggerDialogue("Introduction");
+        timerDisplay = displayTime;
+        dialogBox.SetActive(true);
+        GetComponent<DialogueSystem>().TriggerDialogue(dialogueName);
     }
 }
