@@ -20,7 +20,7 @@ public class NetMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        fishCount = 0;
+        fishCount = 1;
         StartCoroutine(LoadNextSceneAfterDelay("Sumiyoshi Taisha", 60f));
 
     }
