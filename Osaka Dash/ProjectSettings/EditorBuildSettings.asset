@@ -8,19 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenesgold/GoldfishScoop.unity
     guid: 135b3aee9ba2d4e1a8b6a27ddf489845
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenesgold/GoldfishScoopL2.unity
     guid: d931b88b4a7f446928d90e5d88eaf9bd
   - enabled: 1
-    path: Assets/Scenesgold/Sumiyoshi Taisha.unity
+    path: Assets/Scenesgold/Sumiyoshi2 Taisha.unity
     guid: de4e3293066cca943b4df6410209622f
+  - enabled: 1
+    path: Assets/Scenes/GoldfishScoop.unity
+    guid: 3f3d158c80a3eb848a54f12a35049f11
+  - enabled: 1
+    path: Assets/Scenes/Himeji Castle Planning.unity
+    guid: b6337a69143f9b547afd5c25a51b6ac6
   - enabled: 1
     path: Assets/Scenes/Sumiyoshi Taisha.unity
     guid: 360d88d908dd82d4e8bbf690183998f8
   - enabled: 1
-    path: Assets/Scenes/Himeji Castle Planning.unity
-    guid: b6337a69143f9b547afd5c25a51b6ac6
+    path: Assets/Scenes/GoldfishScoopL2.unity
+    guid: e4cd12a5703587644b9c66dec9ff7c9a
   m_configObjects: {}

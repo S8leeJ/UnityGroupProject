@@ -1477,15 +1477,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 445518842487408217, guid: 3f16055aabbff07469076c53fcd246d4, type: 3}
       propertyPath: minutes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 445518842487408217, guid: 3f16055aabbff07469076c53fcd246d4, type: 3}
-      propertyPath: seconds
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 445518842487408217, guid: 3f16055aabbff07469076c53fcd246d4, type: 3}
+      propertyPath: seconds
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 445518842487408217, guid: 3f16055aabbff07469076c53fcd246d4, type: 3}
       propertyPath: timeRemaining
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3800586060560085935, guid: 3f16055aabbff07469076c53fcd246d4, type: 3}
       propertyPath: m_SizeDelta.x
