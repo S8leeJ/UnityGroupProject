@@ -15,7 +15,9 @@ public class NetMove : MonoBehaviour
     private bool isRotating = false;
     private bool isHoldingFish = false;
     private GameObject caughtFish = null;
-    private Vector3 fishOriginalPosition;  
+    private Vector3 fishOriginalPosition;
+
+    [SerializeField] Vector2 maxPosition, minPosition;
 
     void Start()
     {
@@ -31,8 +33,8 @@ public class NetMove : MonoBehaviour
         {
             fishDisplay.SetTime(0);
         }
-        //x = -4
-        // y = -2.5
+
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
@@ -54,14 +56,16 @@ public class NetMove : MonoBehaviour
         if (fishCount >= 5)
         {
             Debug.Log("Fish all caught");
-           
 
-        if (SceneManager.GetActiveScene().name == "GoldfishScoopL2"){
-            SceneManager.LoadScene("Sumiyoshi Taisha");
-        }
-        else{
-            SceneManager.LoadScene("GoldfishScoopL2");
-        }
+
+            if (SceneManager.GetActiveScene().name == "GoldfishScoopL2")
+            {
+                SceneManager.LoadScene("Sumiyoshi Taisha");
+            }
+            else
+            {
+                SceneManager.LoadScene("GoldfishScoopL2");
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space) && !isRotating)
         {
