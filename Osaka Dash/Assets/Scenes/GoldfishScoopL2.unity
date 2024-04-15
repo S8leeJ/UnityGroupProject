@@ -1912,12 +1912,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffect: {fileID: 1713866258}
-  moveSpeed: 5
+  moveSpeed: 50
   rotationSpeed: 90
   rotationDuration: 0.5
   fishHoldDuration: 2
   next: {fileID: 0}
   fishDisplay: {fileID: 1585099308}
+  referenceCam: {fileID: 961115648}
 --- !u!212 &1713866254
 SpriteRenderer:
   m_ObjectHideFlags: 0

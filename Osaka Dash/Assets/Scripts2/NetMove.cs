@@ -17,7 +17,7 @@ public class NetMove : MonoBehaviour
     private GameObject caughtFish = null;
     private Vector3 fishOriginalPosition;
 
-    [SerializeField] Vector2 maxPosition, minPosition;
+    [SerializeField] Camera referenceCam;
 
     void Start()
     {
@@ -35,6 +35,12 @@ public class NetMove : MonoBehaviour
         }
 
 
+        Vector3 newVelocity = Input.mousePosition;
+        newVelocity -= referenceCam.WorldToScreenPoint(gameObject.transform.position);
+        if (newVelocity.magnitude > moveSpeed) newVelocity = newVelocity.normalized * moveSpeed;
+        rb.velocity = newVelocity;
+
+        /*
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
@@ -50,9 +56,9 @@ public class NetMove : MonoBehaviour
                 movement.x = 0;  
             }
         }
- 
-
         rb.velocity = movement * moveSpeed;
+        */
+
         if (fishCount >= 5)
         {
             Debug.Log("Fish all caught");
@@ -67,12 +73,12 @@ public class NetMove : MonoBehaviour
                 SceneManager.LoadScene("GoldfishScoopL2");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !isRotating)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isRotating) 
         {
             StartCoroutine(RotateAroundYAxis());
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
         {
             ReleaseFish();
         }
