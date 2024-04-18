@@ -2982,7 +2982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relativePath: EndGameDialogue.txt
+  relativePath: SumiyoshiTaishaDialogue.txt
   dialogueBox: {fileID: 1065188086}
   eventList: []
 --- !u!114 &671252901
@@ -4743,7 +4743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relativePath: /BridgeDIalogue.txt
+  relativePath: SumiyoshiTaishaDialogue.txt
   dialogueBox: {fileID: 1065188086}
   eventList: []
 --- !u!114 &954193219
@@ -8035,7 +8035,7 @@ MonoBehaviour:
   choiceGridSizeX: 3
   choiceGridSizeY: 3
   wipeQuestionWhenShowingChoices: 1
-  textSpeed: 0.08
+  textSpeed: 0.02
 --- !u!114 &1065188087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10996,7 +10996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relativePath: GoldfishDialogue.txt
+  relativePath: SumiyoshiTaishaDialogue.txt
   dialogueBox: {fileID: 1065188086}
   eventList: []
 --- !u!114 &1652298832
@@ -13455,7 +13455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relativePath: FishermenDialogue.txt
+  relativePath: SumiyoshiTaishaDialogue.txt
   dialogueBox: {fileID: 1065188086}
   eventList: []
 --- !u!114 &1864643015
