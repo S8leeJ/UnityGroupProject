@@ -77,6 +77,15 @@ TextureImporter:
   - first:
       213: 7242801749065717115
     second: rapit_bottom_driverdoor
+  - first:
+      213: 4260645479746307718
+    second: rapit_25
+  - first:
+      213: 5008687561713887875
+    second: rapit_26
+  - first:
+      213: 4879765688331028114
+    second: rapit_27
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -686,6 +695,69 @@ TextureImporter:
       bones: []
       spriteID: b75d3a711d9938460800000000000000
       internalID: 7242801749065717115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rapit_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686072e6d7ad02b30800000000000000
+      internalID: 4260645479746307718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rapit_26
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38aafdadcce628540800000000000000
+      internalID: 5008687561713887875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rapit_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2964c181a0968b340800000000000000
+      internalID: 4879765688331028114
       vertices: []
       indices: 
       edges: []
