@@ -266,7 +266,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void AdvanceDialogue()
     {
-        AbstractDialogue now = null;
+        AbstractDialogue now = nowDialogue.Now();
         
         if (dialogueBox.finishText())
         {
