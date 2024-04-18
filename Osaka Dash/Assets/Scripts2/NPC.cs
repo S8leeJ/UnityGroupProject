@@ -31,6 +31,6 @@ public class NPC : MonoBehaviour
     {
         timerDisplay = displayTime;
         dialogBox.SetActive(true);
-        GetComponent<DialogueSystem>().TriggerDialogue(dialogueName);
+        DialogueSystem.instance.TriggerDialogue(dialogueName);
     }
 }
