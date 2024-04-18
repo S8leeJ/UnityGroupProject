@@ -170,6 +170,7 @@ public class DialogueSystem : MonoBehaviour
         if (dialogueBox == null) throw new Exception("no dialogue box specified");
 
         dialogueDict = new Dictionary<string, Dialogue>();
+        instance = this;
 
         ImportDialogue(File.ReadAllLines(Application.streamingAssetsPath + relativePath).ToList());
     }
@@ -265,7 +266,8 @@ public class DialogueSystem : MonoBehaviour
 
     public void AdvanceDialogue()
     {
-        AbstractDialogue now = nowDialogue.Now();
+        AbstractDialogue now = null;
+        
         if (dialogueBox.finishText())
         {
             switch (now.getType())
