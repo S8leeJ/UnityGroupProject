@@ -2961,7 +2961,6 @@ GameObject:
   - component: {fileID: 671252903}
   - component: {fileID: 671252902}
   - component: {fileID: 671252901}
-  - component: {fileID: 671252900}
   - component: {fileID: 671252905}
   m_Layer: 0
   m_Name: empress
@@ -2970,21 +2969,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &671252900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671252899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relativePath: SumiyoshiTaishaDialogue.txt
-  dialogueBox: {fileID: 1065188086}
-  eventList: []
 --- !u!114 &671252901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4722,7 +4706,6 @@ GameObject:
   - component: {fileID: 954193221}
   - component: {fileID: 954193220}
   - component: {fileID: 954193219}
-  - component: {fileID: 954193218}
   - component: {fileID: 954193223}
   m_Layer: 0
   m_Name: NPC3
@@ -4731,21 +4714,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &954193218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954193217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relativePath: SumiyoshiTaishaDialogue.txt
-  dialogueBox: {fileID: 1065188086}
-  eventList: []
 --- !u!114 &954193219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10975,7 +10943,6 @@ GameObject:
   - component: {fileID: 1652298835}
   - component: {fileID: 1652298834}
   - component: {fileID: 1652298832}
-  - component: {fileID: 1652298831}
   - component: {fileID: 1652298833}
   m_Layer: 0
   m_Name: Scooper
@@ -10984,21 +10951,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1652298831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652298830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relativePath: SumiyoshiTaishaDialogue.txt
-  dialogueBox: {fileID: 1065188086}
-  eventList: []
 --- !u!114 &1652298832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13435,7 +13387,6 @@ GameObject:
   - component: {fileID: 1864643017}
   - component: {fileID: 1864643016}
   - component: {fileID: 1864643015}
-  - component: {fileID: 1864643014}
   m_Layer: 0
   m_Name: Fisherman
   m_TagString: NPC
@@ -13443,21 +13394,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1864643014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864643013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a230c440d85317843a2ff9daa3515602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relativePath: SumiyoshiTaishaDialogue.txt
-  dialogueBox: {fileID: 1065188086}
-  eventList: []
 --- !u!114 &1864643015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14059,6 +13995,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 506475277, guid: 46a361c65d7ac4255909ceb087c73715, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 506475277, guid: 46a361c65d7ac4255909ceb087c73715, type: 3}
       propertyPath: dialogueBox
       value: 
