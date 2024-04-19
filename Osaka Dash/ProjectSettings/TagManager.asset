@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collectible
+  - NPC
+  - Fountain
+  - Fish
+  - Bowl
+  - CollectFish
   layers:
   - Default
   - TransparentFX

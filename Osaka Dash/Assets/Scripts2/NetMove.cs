@@ -129,7 +129,7 @@ public class NetMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isHoldingFish && (other.CompareTag("Fish") || other.CompareTag("BadFish")) && isRotating)
+        if (!isHoldingFish && (other.CompareTag("Fish") && isRotating))
         {
             caughtFish = other.gameObject;
             isHoldingFish = true;

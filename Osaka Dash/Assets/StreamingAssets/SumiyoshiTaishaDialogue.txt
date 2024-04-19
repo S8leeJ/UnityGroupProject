@@ -24,3 +24,11 @@ S Himeji Castle Planning
 - This bridge is a visually striking symbol of spiritual significance and cultural heritage
 - I suggest you go over to find the old fisherman, he seems like he needs some help.
 = BridgeNPC
+
+- Take this Poi and use it to catch goldfish!
++  Make sure to use your AWSD keys to move the net around.
++  Press space to scoop the net.
++  Press r to release the fish.
+- After catching the fish, you will only have 5 seconds to drop it into the bowl on the left. Good luck!
+S GoldfishScoop
+= Net
