@@ -1,6 +1,7 @@
 - Welcome to Sumiyoshi Taisha!!\nA Shinto shrine located in Sumiyoshi ward in Osaka, Japan.
 - It is one of the oldest and most important shrines in the country, with a history spanning over 1,800 years.
-+  The shrine is dedicated to the Sumiyoshi Sanjin, a group of three gods believed to protect travelers, sailors, and fishermen.
++  We need your help, one of our fishermen needs help collecting back his fish!
+- please help him find 5 fish 
 = Introduction
 
 - Quick, I need help with something!
@@ -22,5 +23,13 @@ S Himeji Castle Planning
 
 - Hello, I see you have come to The iconic Taiko-bashi, or Drum Bridge, at Sumiyoshi Taisha in Osaka, Japan
 - This bridge is a visually striking symbol of spiritual significance and cultural heritage
-- I suggest you go over to find the old fisherman, he seems like he needs some help.
+- I suggest you go over to the left hand side to finish finding the old fisherman's fish, he seems like he needs some help.
 = BridgeNPC
+
+- Take this Poi and use it to catch goldfish!
++  Make sure to use your AWSD keys to move the net around.
++  Press space to scoop the net.
++  Press r to release the fish.
+- After catching the fish, you will only have 5 seconds to drop it into the bowl on the left. Good luck!
+S GoldfishScoop
+= Net

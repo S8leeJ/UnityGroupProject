@@ -24,12 +24,7 @@ public class CrowdScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Equals("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerMove>().resetPos();
-            resetPos();
-        }
-        else speed *= -1;
+        speed *= -1;
     }
 
     public void resetPos()

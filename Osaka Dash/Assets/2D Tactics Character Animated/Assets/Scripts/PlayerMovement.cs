@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isJumping = false;
     public float jumpForce = 5f;
+    public int count = 0;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animationController.ChangeMoveType((int)AnimationController.moveType.Idle);
         }
+       
     }
 
     void FixedUpdate()
@@ -81,11 +83,12 @@ public class PlayerMovement : MonoBehaviour
                 // Call the Speak method on the NPC script component
                 npcScript.DisplayDialog();
             }
-            Debug.Log("Collided with NPC: " + collision.gameObject.name);
         }
-        if (collision.gameObject.CompareTag("Fountain"))
+        if (collision.gameObject.CompareTag("CollectFish"))
         {
-            SceneManager.LoadScene("GoldfishScoop");
+            Debug.Log("collide");
+            Destroy(collision.gameObject);
+            count++;
         }
     }
 }

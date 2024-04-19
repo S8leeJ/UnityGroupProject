@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -10,7 +11,10 @@ public class PlayerMove : MonoBehaviour
     float horizontal;
     private Vector2 ogPos;
     public GameObject overworldPlayer;
+    public TextMeshProUGUI healthText;
+    public int health = 3;
     // Start is called before the first frame update
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,6 +55,9 @@ public class PlayerMove : MonoBehaviour
     public void setObjectsLeft(int obj)
     {
         objectsLeft = obj;
+        health = 3;
+        healthText.text = "Health = " + health;
+
     }
 
     public void setPos(Vector2 pos)
@@ -58,16 +65,32 @@ public class PlayerMove : MonoBehaviour
         transform.position = pos;
     }
 
+    public void setOgPos(Vector2 pos)
+    {
+        ogPos = pos;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Collectible"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             objectsLeft--;
             if (objectsLeft == 0)
             {
                 overworldPlayer.GetComponent<OverworldMovement>().nextStage();
             }
+        } else if (collision.gameObject.name.Contains("Crowd") || collision.gameObject.name.Contains("Crusher")
+                   || collision.gameObject.name.Contains("Spike"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 15);
+            resetPos();
+            health--;
+            if (health == 0)
+            {
+                overworldPlayer.GetComponent<OverworldMovement>().lostMinigame();
+            }
+            else healthText.text = "Health = " + health;
         }
     }
 }

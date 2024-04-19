@@ -14,7 +14,7 @@ public class DialogueHimeji : TriggerableEvent
     
     public override void Trigger()
     {
-        player.GetComponent<OverworldMovement>().mg1();
+        player.GetComponent<OverworldMovement>().minigame();
         Debug.Log("successfully triggered event");
     }
 }

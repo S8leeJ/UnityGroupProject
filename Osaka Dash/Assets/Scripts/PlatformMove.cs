@@ -18,6 +18,7 @@ public class PlatformMove : MonoBehaviour
         Vector2 pos = transform.position;
         pos.y += speed * Time.deltaTime;
         transform.position = pos;
+        
     }
 
     void changeDirection()

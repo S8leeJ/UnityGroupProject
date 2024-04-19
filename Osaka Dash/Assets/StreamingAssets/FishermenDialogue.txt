@@ -1,9 +1,0 @@
-- Quick, I need help with something!
-- First, let me give you a rundown. 
-+  Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times. 
-- In Japan, fishing is not only a means of sustenance but also a recreational activity and a way to connect with nature. 
-- Goldfish scooping, known as "kingyo sukui" in Japanese, is a traditional Japanese game that is often played at summer festivals, known as "matsuri." 
-- The game involves scooping goldfish, which are placed in a shallow tank filled with water, using a paper scoop called a "poi" or a delicate net made of thin paper or wire.
-- So please, help me catch the fish!
-+  Please pick up the "Poi" on the floor next to the fountain.
-= Fishing
