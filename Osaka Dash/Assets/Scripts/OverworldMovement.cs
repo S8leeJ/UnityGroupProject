@@ -9,12 +9,15 @@ public class OverworldMovement : MonoBehaviour
     Rigidbody2D rb;
     public CinemachineVirtualCamera cam;
     public GameObject minigamePlayer;
+    public GameObject[] stage1objs;
     public GameObject[] minigame1objs;
     public GameObject[] stage2objs;
     public GameObject[] minigame2objs;
     public GameObject[] stage3objs;
     public GameObject[] minigame3objs;
     public DialogueHimeji dialogue;
+    public string objects;        // player may collect objects, like the himeji ticket. if so, store here to trigger events.
+    Animator animator;
     bool frozen;
     int stage;
     [SerializeField] float[] facing = { 0f, 0f };
@@ -22,10 +25,12 @@ public class OverworldMovement : MonoBehaviour
     void Start()
     {
         // 105, 31
+        animator = GetComponent<Animator>();
         frozen = false;
         stage = 1;
         rb = GetComponent<Rigidbody2D>();
         dialogue = GetComponent<DialogueHimeji>();
+        minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
     }
 
     public int getStage() {  return stage; }
@@ -40,67 +45,78 @@ public class OverworldMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) facing[0] = 1;
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow)) facing[1] = 1;
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.DownArrow)) facing[1] = -1;
+        animator.SetInteger("HFacing", (int)facing[0]);
+        animator.SetInteger("VFacing", (int)facing[1]);
+        animator.SetInteger("HMoving", (int)(horizontal*10));
+        animator.SetInteger("VMoving", (int)(vertical*10));
         if (Input.GetKeyDown(KeyCode.X))
         {
             RaycastHit2D hit = Physics2D.Raycast(rb.position, new Vector2(facing[0], facing[1]), 4.5f, LayerMask.GetMask("NPC"));
 
             if (hit.collider != null)
             {
-                dialogue.triggerDialogue("c");
+                if(hit.collider.name.Contains("Tour Guide")) {
+                    if (stage == 1) { dialogue.triggerDialogue("Otemon Gate"); }
+                    else if (stage == 2) dialogue.triggerDialogue("d");
+                    else if (stage == 3) dialogue.triggerDialogue("e");
+                }
+                
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void minigame()
     {
-        if (collision.gameObject.name.Equals("Tour Guide"))
+        if (stage == 1)
         {
-            if (stage == 1) {
-                /*minigamePlayer.SetActive(true);
-                minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
-                frozen = true;
-                minigame1objs[0].SetActive(true);
-                minigame1objs[1].SetActive(true);
-                cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
-                cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
-                transform.position = new Vector2(105, 31);
-                stage++;*/
-            } else if (stage == 2)
-            {
-                minigamePlayer.SetActive(true);
-                minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
-                frozen = true;
-                minigame2objs[0].SetActive(true);
-                minigame2objs[1].SetActive(true);
-                cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
-                cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame2objs[2].GetComponent<PolygonCollider2D>();
-                stage++;
-                transform.position = new Vector2(382, 25);
-            }
-        }
-    }
+            minigamePlayer.SetActive(true);
+            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
 
-    public void mg1()
-    {
-        minigamePlayer.SetActive(true);
-        minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
-        frozen = true;
-        minigame1objs[0].SetActive(true);
-        minigame1objs[1].SetActive(true);
-        cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
-        cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
-        transform.position = new Vector2(105, 31);
-        stage++;
+            frozen = true;
+            minigame1objs[0].SetActive(true);
+            minigame1objs[1].SetActive(true);
+            minigame1objs[2].SetActive(true);
+            minigame1objs[3].SetActive(true);
+            cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
+            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
+            transform.position = new Vector2(105, 41);
+            stage++;
+        }
+        else if (stage == 2)
+        {
+            minigamePlayer.SetActive(true);
+            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(3);
+            frozen = true;
+            minigame2objs[0].SetActive(true);
+            minigame2objs[1].SetActive(true);
+            cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
+            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame2objs[2].GetComponent<PolygonCollider2D>();
+            stage++;
+            transform.position = new Vector2(382, 25);
+        } else if (stage == 3)
+        {
+            minigamePlayer.SetActive(true);
+            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(3);
+            frozen = true;
+            cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
+            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame2objs[2].GetComponent<PolygonCollider2D>();
+            stage++;
+            // set transform to next stage
+        }
     }
 
     public void nextStage()
     {
+
         if (stage == 2)
         {
+
+            minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
             minigame1objs[0].SetActive(false);
             minigame1objs[1].SetActive(false);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
             minigamePlayer.GetComponent<PlayerMove>().setPos(new Vector2(193, 34));
+            minigamePlayer.GetComponent<PlayerMove>().setOgPos(new Vector2(193, 34));
             minigamePlayer.SetActive(false);
             frozen = false;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage2objs[0].GetComponent<PolygonCollider2D>();
@@ -109,11 +125,38 @@ public class OverworldMovement : MonoBehaviour
             minigame2objs[0].SetActive(false);
             minigame2objs[1].SetActive(false);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
-            // minigamePlayer.GetComponent<PlayerMove>().setPos(new Vector2(193, 34));
+            minigamePlayer.GetComponent<PlayerMove>().setPos(new Vector2(444, 34));
             minigamePlayer.SetActive(false);
             frozen = false;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage3objs[0].GetComponent<PolygonCollider2D>();
         }
     }
+
+    public void lostMinigame()
+    {
+        if(stage == 2)
+        {
+            frozen = false;
+            minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
+            transform.position = new Vector2(-77, 40);
+            minigamePlayer.SetActive(false);
+            minigame1objs[0].SetActive(false);
+            minigame1objs[1].SetActive(false);
+            cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
+            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage1objs[0].GetComponent<PolygonCollider2D>();
+            stage--;
+        } else if (stage == 3)
+        {
+            frozen = false;
+            minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
+            minigamePlayer.SetActive(false);
+            transform.position = new Vector2(105, 41);
+            cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
+            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage2objs[0].GetComponent<PolygonCollider2D>();
+            stage--;
+        }
+    }
+
+    public void setStage(int stage) { this.stage = stage; }
 }
 

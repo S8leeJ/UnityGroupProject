@@ -5,4 +5,32 @@ a-Get a ticket and then come back
 aT0
 A I don't have one
 a-You can't enter
-= c
+= Otemon Gate
+
+
+- These are the famous stone walls, built by Koruda Kanbei during the Edo period of Japan.
+- These walls were built using a technique called "Nozura-Sumi", which is a method of stacking rocks as they are instead of shaping them.
+- These walls were also built during the reign of Toyotomi Hideyoshi, 
+- whom Kanbei gifted the castle to as a base for his expedition to the Chugoku region.
+Q All of this was built using recycled rocks, typically volcanic or sedimentary ones...
+A Tell me more
+a-Well. let's go back to see how he made these walls...
+aT0
+A Cool
+a-Yeah
+= d
+
+
+- Next, we're at Nishinomaru Bailey's Peony Garden.
+- This was built for Princess Sen, Senhime, or Lady Sen.
+- To the south is the "Hyakken-roka", which means "long connecting corridor", which was initially built as a defense mechanism for the west side.
+- This is nearby the tower that Princess Sen spent her days in Himeji with her second husband, Honda Tadatoki.
+- The flowers in the garden typically bloom in about April-
+Q Hey, where are the flowers???
+A The crowds have taken some of the flowers!
+a-Well go get them then!!!
+aT0
+A No idea
+a-Noooo!!!
+= e
+
