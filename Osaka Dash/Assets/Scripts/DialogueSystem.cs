@@ -8,7 +8,20 @@ using System.Linq;
 
 public abstract class TriggerableEvent : MonoBehaviour
 {
+    DialogueSystem caller;
+    Dialogue calledDialogue;
+
     public abstract void Trigger();
+    public virtual void Trigger(DialogueSystem system,Dialogue dialogue)
+    {
+        caller = system;
+        calledDialogue = dialogue;
+        Trigger();
+    }
+    public virtual void ReturnToDialogue()
+    {
+        caller.TriggerDialogue(calledDialogue);
+    }
 }
 
 public abstract class AbstractDialogue
@@ -21,7 +34,11 @@ public abstract class AbstractDialogue
     public virtual string getText() { return ""; }
     public virtual List<string> getQuestionChoices() { return null; }
     public abstract int getType();
-    public virtual TriggerableEvent getEvent() { return null; }
+    public virtual bool EndDialogue()
+    {
+        return false;
+    }
+    public virtual List<TriggerableEvent> getEvent() { return null; }
     //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index or jump, 4 = trigger event, 5 = scene transition
     public virtual int getChoiceGoTo(int i) { return -1; }
 
@@ -70,15 +87,39 @@ public class Question : AbstractDialogue
 
 public class DialogueEvent : AbstractDialogue
 {
-    TriggerableEvent triggerableEvent;
+    List<TriggerableEvent> triggerableEvent;
+    bool endDialogue;
     public override int getType() { return 4; }
-    public override TriggerableEvent getEvent()
+    public override List<TriggerableEvent> getEvent()
     {
         return triggerableEvent;
     }
     public DialogueEvent(TriggerableEvent triggerableEvent)
     {
-        this.triggerableEvent = triggerableEvent;
+        constructor(new List<TriggerableEvent> { triggerableEvent }, false);
+    }
+    public DialogueEvent(TriggerableEvent triggerableEvent,bool endDialogue)
+    {
+        constructor(new List<TriggerableEvent> { triggerableEvent }, endDialogue);
+    }
+    public DialogueEvent(List<TriggerableEvent> eventsList)
+    {
+        constructor(eventsList, false);
+    }
+    public DialogueEvent(List<TriggerableEvent> eventsList, bool endDialogue)
+    {
+        constructor(eventsList, endDialogue);
+    }
+
+    void constructor(List<TriggerableEvent> eventsList, bool doEnd)
+    {
+        endDialogue = doEnd;
+        triggerableEvent = eventsList;
+    }
+
+    public override bool EndDialogue()
+    {
+        return endDialogue;
     }
 }
 
@@ -90,7 +131,7 @@ public class DialogueGoTo : AbstractDialogue
 
     public override string getText()
     {
-        return ((isRelative ? 1 : 0) + (endDialogue ? 2 : 0)).ToString() + indexToGo;
+        return (isRelative ? 1 : 0).ToString() + indexToGo;
     }
     public override int getType() { return 3; }
 
@@ -100,6 +141,10 @@ public class DialogueGoTo : AbstractDialogue
         this.indexToGo = indexToGo;
         this.isRelative = isRelative;
     }
+    public override bool EndDialogue()
+    {
+        return endDialogue;
+    }
 }
 
 public class DialogueSceneTransition : AbstractDialogue
@@ -107,6 +152,7 @@ public class DialogueSceneTransition : AbstractDialogue
     string sceneName;
     public override string getText() { return sceneName; }
     public override int getType() { return 5; }
+    public override bool EndDialogue() { return true; }
 
     public DialogueSceneTransition(string sceneName)
     {
@@ -196,10 +242,23 @@ public class DialogueSystem : MonoBehaviour
                 return new DialogueSceneTransition(content);
             case 'T':
             case 't':
-                int index;
-                if (!int.TryParse(content, out index))
-                    throw new Exception("T command used without valid event index");
-                return new DialogueEvent(eventList[index]);
+                List<string> tempList1 = content.Replace(" ", "").Split(',').ToList<string>();
+                if (tempList1.Count == 1)
+                {
+                    int index;
+                    if (!int.TryParse(content, out index))
+                        throw new Exception("T command used without valid event index");
+                    return new DialogueEvent(eventList[index], type == 'T');
+                }
+                List<TriggerableEvent> tempList3 = new List<TriggerableEvent>();
+                for(int i = 0; i < tempList1.Count(); i++)
+                {
+                    int tmp;
+                    if (!int.TryParse(content, out tmp))
+                        throw new Exception("Invalid T/t command, some elements were not valid numbers");
+                    tempList3.Add(eventList[tmp]);
+                }
+                return new DialogueEvent(tempList3, type == 'T');
             default:
                 Debug.Log(String.Format("Improper dialogue type {1} in {0}, this was treated as regular dialogue.\nContent of this dialogue was {2}.", relativePath, type, content));
                 goto case '-';
@@ -294,7 +353,7 @@ public class DialogueSystem : MonoBehaviour
                         case 2:
                             dialogueBox.getChoice();
                             break;
-                    }                        
+                    }
                     break;
                 case 3:
                     string temp = now.getText();
@@ -306,20 +365,18 @@ public class DialogueSystem : MonoBehaviour
                         case '1':
                             nowDialogue.Advance(int.Parse(temp.Substring(1)));
                             break;
-                        case '2':
-                            nowDialogue.Go(int.Parse(temp.Substring(1)));
-                            goto default;
-                        case '3':
-                            nowDialogue.Advance(int.Parse(temp.Substring(1)));
-                            goto default;
-                        default:
-                            endDialogue();
-                            break;
                     }
+                    if (now.EndDialogue())
+                        endDialogue();
                     break;
                 case 4:
-                    now.getEvent().Trigger();
-                    endDialogue();
+                    List<TriggerableEvent> list = now.getEvent();
+                    for(int i = 0; i < list.Count; i++)
+                    {
+                        list[i].Trigger(this, nowDialogue);
+                    }
+                    if (now.EndDialogue())
+                        endDialogue();
                     //nowDialogue.Advance();
                     break;
                 case 5:
@@ -338,9 +395,13 @@ public class DialogueSystem : MonoBehaviour
     {
         if (!dialogueDict.ContainsKey(name))
             throw new System.Exception(string.Format("Invalid dialogue name: {0}", name));
+        TriggerDialogue(dialogueDict[name]);
+    }
+    public void TriggerDialogue(Dialogue dialogue)
+    {
         GlobalEventSystem.DialogueStart();
         dialogueBox.Enable();
-        nowDialogue = dialogueDict[name];
+        nowDialogue = dialogue;
         AdvanceDialogue();
     }
 
