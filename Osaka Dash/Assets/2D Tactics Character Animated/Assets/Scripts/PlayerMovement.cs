@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GlobalEventSystem.isInDialogue) return;
         // Check if the collided GameObject has the "NPC" tag
         if (collision.gameObject.CompareTag("NPC"))
         {
