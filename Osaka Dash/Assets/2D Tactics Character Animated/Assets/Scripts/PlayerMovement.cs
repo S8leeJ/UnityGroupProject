@@ -1,5 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,11 +12,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping = false;
     public float jumpForce = 5f;
     public int count = 0;
-
+    public Text coins; 
     void Start()
     {
         animationController = GetComponent<AnimationController>();
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     void Update()
@@ -33,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animationController.ChangeMoveType((int)AnimationController.moveType.Idle);
         }
-       
+        coins.text = "COINS: " + count.ToString() + "X";
+
     }
 
     void FixedUpdate()

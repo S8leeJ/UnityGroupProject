@@ -5,6 +5,11 @@
 = Introduction
 
 - Quick, I need help with something!
+Q Do you have 5 coins? I need them to get your net.
+A Yes
+a-Ok lets proceed
+A No
+a-Go get the coins.
 - First, let me give you a rundown. 
 +  Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times. 
 - In Japan, fishing is not only a means of sustenance but also a recreational activity and a way to connect with nature. 
