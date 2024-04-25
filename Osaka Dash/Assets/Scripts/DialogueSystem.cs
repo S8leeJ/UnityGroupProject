@@ -26,21 +26,15 @@ public abstract class TriggerableEvent : MonoBehaviour
 
 public abstract class AbstractDialogue
 {
-    public virtual bool goToNext()
-    {
-        return true;
-    }
+    public virtual bool goToNext() => true;
 
-    public virtual string getText() { return ""; }
-    public virtual List<string> getQuestionChoices() { return null; }
+    public virtual string getText() => "";
+    public virtual List<string> getQuestionChoices() => null;
     public abstract int getType();
-    public virtual bool EndDialogue()
-    {
-        return false;
-    }
-    public virtual List<TriggerableEvent> getEvent() { return null; }
+    public virtual bool EndDialogue() => false;
+    public virtual List<TriggerableEvent> getEvent() => null;
     //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index or jump, 4 = trigger event, 5 = scene transition
-    public virtual int getChoiceGoTo(int i) { return -1; }
+    public virtual int getChoiceGoTo(int i) => -1;
 
 }
 
@@ -48,8 +42,8 @@ public class DialogueLine : AbstractDialogue
 {
     string text;
     bool addOn;
-    public override string getText() { return text; }
-    public override int getType() { return addOn ? 1 : 0; }
+    public override string getText() => text;
+    public override int getType() => addOn ? 1 : 0;
     public DialogueLine(string line) { text = line.Replace("\\n", "\n"); }
     public DialogueLine(string line, bool addOn) { text = line; this.addOn = addOn; }
 }
@@ -58,7 +52,7 @@ public class Question : AbstractDialogue
 {
     string question;
     List<Tuple<string,int>> answers;
-    public override string getText() { return question; }
+    public override string getText() => question;
     public override List<string> getQuestionChoices()
     {
         List<string> answerText = new List<string>();
@@ -68,11 +62,8 @@ public class Question : AbstractDialogue
         }
         return answerText;
     }
-    public override int getType() { return 2; }
-    public override int getChoiceGoTo(int i)
-    {
-        return answers[i].Item2;
-    }
+    public override int getType() => 2;
+    public override int getChoiceGoTo(int i) => answers[i].Item2;
     public Question(string question)
     {
         this.question = question;
@@ -89,11 +80,8 @@ public class DialogueEvent : AbstractDialogue
 {
     List<TriggerableEvent> triggerableEvent;
     bool endDialogue;
-    public override int getType() { return 4; }
-    public override List<TriggerableEvent> getEvent()
-    {
-        return triggerableEvent;
-    }
+    public override int getType() => 4;
+    public override List<TriggerableEvent> getEvent() => triggerableEvent;
     public DialogueEvent(TriggerableEvent triggerableEvent)
     {
         constructor(new List<TriggerableEvent> { triggerableEvent }, false);
@@ -117,10 +105,7 @@ public class DialogueEvent : AbstractDialogue
         triggerableEvent = eventsList;
     }
 
-    public override bool EndDialogue()
-    {
-        return endDialogue;
-    }
+    public override bool EndDialogue() => endDialogue;
 }
 
 public class DialogueGoTo : AbstractDialogue
@@ -129,11 +114,9 @@ public class DialogueGoTo : AbstractDialogue
     bool isRelative;
     int indexToGo;
 
-    public override string getText()
-    {
-        return (isRelative ? 1 : 0).ToString() + indexToGo;
-    }
-    public override int getType() { return 3; }
+    public override string getText() => (isRelative ? 1 : 0).ToString() + indexToGo;
+    public override int getType() => 3;
+    public override bool EndDialogue() => endDialogue;
 
     public DialogueGoTo(bool endDialogue, int indexToGo, bool isRelative)
     {
@@ -141,18 +124,14 @@ public class DialogueGoTo : AbstractDialogue
         this.indexToGo = indexToGo;
         this.isRelative = isRelative;
     }
-    public override bool EndDialogue()
-    {
-        return endDialogue;
-    }
 }
 
 public class DialogueSceneTransition : AbstractDialogue
 {
     string sceneName;
-    public override string getText() { return sceneName; }
-    public override int getType() { return 5; }
-    public override bool EndDialogue() { return true; }
+    public override string getText() => sceneName;
+    public override int getType() => 5;
+    public override bool EndDialogue() => true;
 
     public DialogueSceneTransition(string sceneName)
     {
@@ -172,15 +151,9 @@ public class Dialogue
         dialoguePointer %= dialogueList.Count;
         return dialogueList[dialoguePointer];
     }
-    public AbstractDialogue Advance()
-    {
-        return Advance(1);
-    }
+    public AbstractDialogue Advance() => Advance(1);
 
-    public AbstractDialogue Now()
-    {
-        return dialogueList[dialoguePointer];
-    }
+    public AbstractDialogue Now() => dialogueList[dialoguePointer];
 
     public AbstractDialogue Go(int i)
     {
@@ -254,7 +227,7 @@ public class DialogueSystem : MonoBehaviour
                 for(int i = 0; i < tempList1.Count(); i++)
                 {
                     int tmp;
-                    if (!int.TryParse(content, out tmp))
+                    if (!int.TryParse(tempList1[i], out tmp))
                         throw new Exception("Invalid T/t command, some elements were not valid numbers");
                     tempList3.Add(eventList[tmp]);
                 }
