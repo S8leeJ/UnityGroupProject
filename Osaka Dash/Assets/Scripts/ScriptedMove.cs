@@ -22,7 +22,7 @@ public class ScriptedMove : TriggerableEvent
         transform = GetComponent<Transform>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody = GetComponent<Rigidbody>();
-        useAccel = rigidbody2D == null && rigidbody == null;
+        useAccel = !(rigidbody2D == null && rigidbody == null);
         velocity = useAccel ? (moveAmount / moveDuration) : startVelocity;
         originalPosition = transform.position;
     }
@@ -37,18 +37,19 @@ public class ScriptedMove : TriggerableEvent
                 timer = 0;
                 return;
             }
-            timer += Time.deltaTime;
-            if (timer >= moveDuration) flag = false;
+            timer -= Time.deltaTime;
+            if (timer < moveDuration) flag = false;
             if (rigidbody == null) rigidbody2D.AddForce(moveAmount, ForceMode2D.Impulse);
             else rigidbody.AddForce(moveAmount, ForceMode.Impulse);
         }
         else
         {
+
             Vector3 thisFrameMovement = velocity * Time.deltaTime * (flag ? 1 : -1);
             if (thisFrameMovement.magnitude >= (flag ? moveAmount - alreadyMoved : alreadyMoved).magnitude)
             {
                 alreadyMoved = flag ? moveAmount : alreadyMoved;
-                ReturnToDialogue();
+                //ReturnToDialogue();
             }
             else
             {
@@ -61,6 +62,7 @@ public class ScriptedMove : TriggerableEvent
     public override void Trigger()
     {
         flag = !flag;
+        timer = moveDuration;
         if (useAccel)
         {
             if (rigidbody == null) rigidbody2D.velocity = velocity;

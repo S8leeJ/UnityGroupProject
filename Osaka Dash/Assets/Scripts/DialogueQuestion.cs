@@ -9,9 +9,6 @@ public class DialogueQuestion : MonoBehaviour
     TextMeshProUGUI textbox;
     [SerializeField] GameObject selectedGraphic;
     bool isSelected = false;
-    DialogueQuestion left, right, up, down;
-    DialogueDisplay Parent;
-    int choiceID;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +24,9 @@ public class DialogueQuestion : MonoBehaviour
         selectedGraphic.SetActive(isSelected);
     }
 
-    public void displayChoice(string text,int ID)
+    public void displayChoice(string text)
     {
         gameObject.SetActive (true);
-        choiceID = ID;
         textbox.SetText(text);
     }
 
@@ -51,10 +47,5 @@ public class DialogueQuestion : MonoBehaviour
     public void deselect()
     {
         isSelected = false;
-    }
-
-    public void setParent(DialogueDisplay parent)
-    {
-        Parent = parent;
     }
 }

@@ -45,7 +45,6 @@ public class DialogueDisplay : MonoBehaviour
 
         for (int i = 0; i < questionSelection.Count; i++)
         {
-            questionSelection[i].setParent(this);
             choiceGrid[i / choiceGridSizeX, i % choiceGridSizeX] = questionSelection[i];
         }
     }
@@ -133,7 +132,7 @@ public class DialogueDisplay : MonoBehaviour
         this.caller = caller;
         for (int i = 0; i < questionTexts.Count && i < questionSelection.Count; i++)
         {
-            questionSelection[i].displayChoice(questionTexts[i], i);
+            questionSelection[i].displayChoice(questionTexts[i]);
             questionSelection[i].deselect();
         }
         questionSelection[0].setChoice();
