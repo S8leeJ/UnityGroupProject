@@ -11,6 +11,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 7
     m_ConditionEvent: HMoving
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: VMoving
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3116635620839121036}
   m_Solo: 0
@@ -214,6 +217,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: VMoving
+    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: HMoving
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5672505523248731624}
