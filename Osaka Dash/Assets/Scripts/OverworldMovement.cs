@@ -8,7 +8,7 @@ public class OverworldMovement : MonoBehaviour
     float horizontal, vertical;
     Rigidbody2D rb;
     public CinemachineVirtualCamera cam;
-    public GameObject minigamePlayer;
+    public GameObject minigamePlayer, aoi;
     public GameObject[] stage1objs;
     public GameObject[] minigame1objs;
     public GameObject[] stage2objs;
@@ -16,8 +16,8 @@ public class OverworldMovement : MonoBehaviour
     public GameObject[] stage3objs;
     public GameObject[] minigame3objs;
     public DialogueHimeji dialogue;
+    Animator animator, aoiAnim;
     public string objects;        // player may collect objects, like the himeji ticket. if so, store here to trigger events.
-    Animator animator;
     bool frozen;
     int stage;
     [SerializeField] float[] facing = { 0f, 0f };
@@ -26,6 +26,7 @@ public class OverworldMovement : MonoBehaviour
     {
         // 105, 31
         animator = GetComponent<Animator>();
+        aoiAnim = aoi.GetComponent<Animator>();
         frozen = false;
         stage = 1;
         rb = GetComponent<Rigidbody2D>();
@@ -37,31 +38,78 @@ public class OverworldMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GlobalEventSystem.isPaused()) { return; }
+        if (GlobalEventSystem.isPaused()) { return; }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if(!frozen) rb.velocity = new Vector2(horizontal * 7.0f, vertical * 7.0f);
+        if (!frozen) rb.velocity = new Vector2(horizontal * 7.0f, vertical * 7.0f);
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) facing[0] = -1;
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) facing[0] = 1;
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow)) facing[1] = 1;
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.DownArrow)) facing[1] = -1;
+        if (facing[0] == 1)
+        {
+            transform.rotation = new Quaternion(0, 180, 0, 0);
+
+        }
+        else transform.rotation = new Quaternion(0, 0, 0, 0);
         animator.SetInteger("HFacing", (int)facing[0]);
         animator.SetInteger("VFacing", (int)facing[1]);
-        animator.SetInteger("HMoving", (int)(horizontal*10));
-        animator.SetInteger("VMoving", (int)(vertical*10));
+        animator.SetInteger("HMoving", (int)(horizontal * 100));
+        animator.SetInteger("VMoving", (int)(vertical * 100));
         if (Input.GetKeyDown(KeyCode.X))
         {
             RaycastHit2D hit = Physics2D.Raycast(rb.position, new Vector2(facing[0], facing[1]), 4.5f, LayerMask.GetMask("NPC"));
 
             if (hit.collider != null)
             {
-                if(hit.collider.name.Contains("Tour Guide")) {
+                if (hit.collider.name.Contains("Tour Guide"))
+                {
                     if (stage == 1) { dialogue.triggerDialogue("Otemon Gate"); }
-                    else if (stage == 2) dialogue.triggerDialogue("d");
-                    else if (stage == 3) dialogue.triggerDialogue("e");
+                    else if (stage == 2) dialogue.triggerDialogue("Stone Walls");
+                    else if (stage == 3) dialogue.triggerDialogue("Nishinomaru Bailey");
                 }
-                
+
             }
+        }
+
+        if (!aoi.GetComponent<BoxCollider2D>().IsTouching(GetComponent<CircleCollider2D>()))
+        {
+            Debug.Log(aoiAnim.GetInteger("HMoving") + " " + aoiAnim.GetInteger("VMoving"));
+            if ((int)aoi.transform.position.y < (int)transform.position.y)
+            {
+
+                // use Vector2.moveTowards()
+                //aoi.transform.position = new Vector2(aoi.transform.position.x, aoi.transform.position.y + (6.8f * Time.deltaTime));
+                //aoi.transform.position = Vector2.MoveTowards(aoi.transform.position, transform.position, 6.8f * Time.deltaTime);
+                aoiAnim.SetInteger("VMoving", 1);
+            }
+            else if ((int)aoi.transform.position.y > (int)transform.position.y)
+            {
+                //aoi.transform.position = new Vector2(aoi.transform.position.x, aoi.transform.position.y - (6.8f * Time.deltaTime));
+                aoiAnim.SetInteger("VMoving", -1);
+            }
+            else
+            {
+                aoiAnim.SetInteger("VMoving", 0);
+            }
+
+            if ((int)aoi.transform.position.x < (int)transform.position.x)
+            {
+                aoi.transform.rotation = new Quaternion(0, 180, 0, 0);
+                //aoi.transform.position = new Vector2(aoi.transform.position.x + (6.8f * Time.deltaTime), aoi.transform.position.y);
+                aoiAnim.SetInteger("HMoving", 1);
+            }
+            else if ((int)aoi.transform.position.x > (int)transform.position.x)
+            {
+                aoi.transform.rotation = new Quaternion(0, 0, 0, 0);
+                //aoi.transform.position = new Vector2(aoi.transform.position.x - (6.8f * Time.deltaTime), aoi.transform.position.y);
+                aoiAnim.SetInteger("HMoving", -1);
+            }
+            else
+            {
+                aoiAnim.SetInteger("HMoving", 0);
+            }
+            aoi.transform.position = Vector2.MoveTowards(aoi.transform.position, transform.position, 6.8f * Time.deltaTime);
         }
     }
 
@@ -80,26 +128,31 @@ public class OverworldMovement : MonoBehaviour
             cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
             transform.position = new Vector2(105, 41);
+            aoi.transform.position = new Vector2(98, 41);
             stage++;
         }
         else if (stage == 2)
         {
             minigamePlayer.SetActive(true);
-            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(3);
+            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
             frozen = true;
             minigame2objs[0].SetActive(true);
             minigame2objs[1].SetActive(true);
+            minigame2objs[3].SetActive(true);
+            minigame2objs[4].SetActive(true);
+            minigame2objs[5].SetActive(true);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame2objs[2].GetComponent<PolygonCollider2D>();
             stage++;
             transform.position = new Vector2(382, 25);
+            aoi.transform.position = new Vector2(390, 25);
         } else if (stage == 3)
         {
             minigamePlayer.SetActive(true);
             minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(3);
             frozen = true;
             cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
-            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame2objs[2].GetComponent<PolygonCollider2D>();
+            cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame3objs[0].GetComponent<PolygonCollider2D>();
             stage++;
             // set transform to next stage
         }
@@ -139,6 +192,7 @@ public class OverworldMovement : MonoBehaviour
             frozen = false;
             minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
             transform.position = new Vector2(-77, 40);
+            aoi.transform.position = new Vector2(-74, 40);
             minigamePlayer.SetActive(false);
             minigame1objs[0].SetActive(false);
             minigame1objs[1].SetActive(false);
@@ -151,6 +205,7 @@ public class OverworldMovement : MonoBehaviour
             minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
             minigamePlayer.SetActive(false);
             transform.position = new Vector2(105, 41);
+            aoi.transform.position = new Vector2(98, 41);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage2objs[0].GetComponent<PolygonCollider2D>();
             stage--;

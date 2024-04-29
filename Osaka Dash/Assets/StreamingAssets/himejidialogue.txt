@@ -18,7 +18,7 @@ a-Well. let's go back to see how he made these walls...
 aT0
 A Cool
 a-Yeah
-= d
+= Stone Walls
 
 
 - Next, we're at Nishinomaru Bailey's Peony Garden.
@@ -32,5 +32,5 @@ a-Well go get them then!!!
 aT0
 A No idea
 a-Noooo!!!
-= e
+= Nishinomaru Bailey
 
