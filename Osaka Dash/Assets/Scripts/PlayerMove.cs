@@ -30,8 +30,8 @@ public class PlayerMove : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jump);
 
         Quaternion rotation = transform.rotation;
-        if (horizontal < 0) rotation.y = 180;
-        else if (horizontal>0) rotation.y = 0;
+        if (horizontal < 0) rotation.y = 0;
+        else if (horizontal>0) rotation.y = 180;
         transform.rotation = rotation;
 
         if (Input.GetKeyDown(KeyCode.Q))

@@ -122,9 +122,9 @@ public class OverworldMovement : MonoBehaviour
 
             frozen = true;
             minigame1objs[0].SetActive(true);
-            minigame1objs[1].SetActive(true);
+            if(minigame1objs[1]!=null)minigame1objs[1].SetActive(true);
             minigame1objs[2].SetActive(true);
-            minigame1objs[3].SetActive(true);
+            if (minigame1objs[3] != null) minigame1objs[3].SetActive(true);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
             transform.position = new Vector2(105, 41);
