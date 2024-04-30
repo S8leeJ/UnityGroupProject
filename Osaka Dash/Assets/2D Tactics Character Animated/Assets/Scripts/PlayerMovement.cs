@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animationController.ChangeMoveType((int)AnimationController.moveType.Idle);
         }
-        coins.text = "COINS: " + count.ToString() + "X";
+        if (coins != null) coins.text = "COINS: " + count.ToString() + "X";
 
     }
 
