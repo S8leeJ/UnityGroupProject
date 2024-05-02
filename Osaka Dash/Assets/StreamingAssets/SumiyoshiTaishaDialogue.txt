@@ -1,22 +1,22 @@
 - Welcome to Sumiyoshi Taisha!!\nA Shinto shrine located in Sumiyoshi ward in Osaka, Japan.
 - It is one of the oldest and most important shrines in the country, with a history spanning over 1,800 years.
 +  We need your help, one of our fishermen needs help collecting back his fish!
-- please help him find 5 fish 
+- please help him find 5 coins
 = Introduction
 
 - Quick, I need help with something!
 Q Do you have 5 coins? I need them to get your net.
 A Yes
-a-Ok lets proceed
+a- Ok lets proceed
+a- First, let me give you a rundown. 
+a+  Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times. 
+a- In Japan, fishing is not only a means of sustenance but also a recreational activity and a way to connect with nature. 
+a- Goldfish scooping, known as "kingyo sukui" in Japanese, is a traditional Japanese game that is often played at summer festivals, known as "matsuri." 
+a- The game involves scooping goldfish, which are placed in a shallow tank filled with water, using a paper scoop called a "poi" or a delicate net made of thin paper or wire.
+a- So please, help me catch the fish!
+a+  Please pick up the "Poi" on the floor next to the fountain.
 A No
 a-Go get the coins.
-- First, let me give you a rundown. 
-+  Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times. 
-- In Japan, fishing is not only a means of sustenance but also a recreational activity and a way to connect with nature. 
-- Goldfish scooping, known as "kingyo sukui" in Japanese, is a traditional Japanese game that is often played at summer festivals, known as "matsuri." 
-- The game involves scooping goldfish, which are placed in a shallow tank filled with water, using a paper scoop called a "poi" or a delicate net made of thin paper or wire.
-- So please, help me catch the fish!
-+  Please pick up the "Poi" on the floor next to the fountain.
 = Fishing
 
 - Thank you for visiting us today at Sumiyoshi Taisha, congratulations on a great accomplishment
@@ -32,8 +32,8 @@ S Himeji Castle Planning
 = BridgeNPC
 
 - Take this Poi and use it to catch goldfish!
-+  Make sure to use your AWSD keys to move the net around.
-+  Press space to scoop the net.
++  Make sure to use your mouse to move the net around.
++  left-click to scoop the net.
 +  Press r to release the fish.
 - After catching the fish, you will only have 5 seconds to drop it into the bowl on the left. Good luck!
 S GoldfishScoop
