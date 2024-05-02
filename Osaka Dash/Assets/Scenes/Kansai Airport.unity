@@ -670,7 +670,6 @@ GameObject:
   - component: {fileID: 403584283}
   - component: {fileID: 403584285}
   - component: {fileID: 403584284}
-  - component: {fileID: 403584287}
   - component: {fileID: 403584286}
   - component: {fileID: 403584290}
   - component: {fileID: 403584289}
@@ -4124,21 +4123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAmount: {x: 3.3, y: 0, z: 0}
   moveDuration: 1000
-  startVelocity: {x: 0, y: 0, z: 0}
---- !u!114 &403584287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403584282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d778c0f655650ff4f834740fcad2d5d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAmount: {x: 0, y: 0, z: 0}
-  moveDuration: 1
   startVelocity: {x: 0, y: 0, z: 0}
 --- !u!66 &403584288
 CompositeCollider2D:
@@ -17336,8 +17320,8 @@ MonoBehaviour:
   eventList:
   - {fileID: 1432770006}
   - {fileID: 703981393}
+  - {fileID: 403584286}
   - {fileID: 2099922440}
-  - {fileID: 403584287}
 --- !u!114 &2099922442
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,14 +12,15 @@ public abstract class TriggerableEvent : MonoBehaviour
     Dialogue calledDialogue;
 
     public abstract void Trigger();
-    public virtual void Trigger(DialogueSystem system,Dialogue dialogue)
+    public void Trigger(DialogueSystem system,Dialogue dialogue)
     {
         caller = system;
         calledDialogue = dialogue;
         Trigger();
     }
-    public virtual void ReturnToDialogue()
+    public void ReturnToDialogue()
     {
+        if (caller == null) return;
         caller.TriggerDialogue(calledDialogue);
     }
 }
@@ -30,7 +31,7 @@ public abstract class AbstractDialogue
 
     public virtual string getText() => "";
     public virtual List<string> getQuestionChoices() => null;
-    public abstract int getType();
+    public abstract DialogueType getType();
     public virtual bool EndDialogue() => false;
     public virtual List<TriggerableEvent> getEvent() => null;
     //0 = regular dialogue line, 1 = add on, 2 = question, 3 = go to specific index or jump, 4 = trigger event, 5 = scene transition
@@ -38,12 +39,22 @@ public abstract class AbstractDialogue
 
 }
 
+public enum DialogueType
+{
+    regularLine,
+    addOn,
+    question,
+    jump,
+    triggerEvent,
+    sceneTransition
+}
+
 public class DialogueLine : AbstractDialogue
 {
     string text;
     bool addOn;
     public override string getText() => text;
-    public override int getType() => addOn ? 1 : 0;
+    public override DialogueType getType() => addOn ? DialogueType.addOn : DialogueType.regularLine;
     public DialogueLine(string line) { text = line.Replace("\\n", "\n"); }
     public DialogueLine(string line, bool addOn) { text = line; this.addOn = addOn; }
 }
@@ -62,7 +73,7 @@ public class Question : AbstractDialogue
         }
         return answerText;
     }
-    public override int getType() => 2;
+    public override DialogueType getType() => DialogueType.question;
     public override int getChoiceGoTo(int i) => answers[i].Item2;
     public Question(string question)
     {
@@ -80,7 +91,7 @@ public class DialogueEvent : AbstractDialogue
 {
     List<TriggerableEvent> triggerableEvent;
     bool endDialogue;
-    public override int getType() => 4;
+    public override DialogueType getType() => DialogueType.triggerEvent;
     public override List<TriggerableEvent> getEvent() => triggerableEvent;
     public DialogueEvent(TriggerableEvent triggerableEvent)
     {
@@ -115,7 +126,7 @@ public class DialogueGoTo : AbstractDialogue
     int indexToGo;
 
     public override string getText() => (isRelative ? 1 : 0).ToString() + indexToGo;
-    public override int getType() => 3;
+    public override DialogueType getType() => DialogueType.jump;
     public override bool EndDialogue() => endDialogue;
 
     public DialogueGoTo(bool endDialogue, int indexToGo, bool isRelative)
@@ -130,7 +141,7 @@ public class DialogueSceneTransition : AbstractDialogue
 {
     string sceneName;
     public override string getText() => sceneName;
-    public override int getType() => 5;
+    public override DialogueType getType() => DialogueType.sceneTransition;
     public override bool EndDialogue() => true;
 
     public DialogueSceneTransition(string sceneName)
@@ -149,6 +160,7 @@ public class Dialogue
         dialoguePointer += i;
         for (; dialoguePointer < 0; dialoguePointer += dialogueList.Count) ;
         dialoguePointer %= dialogueList.Count;
+        Debug.Log("Advancing dialogue to line " + dialoguePointer);
         return dialogueList[dialoguePointer];
     }
     public AbstractDialogue Advance() => Advance(1);
@@ -299,23 +311,26 @@ public class DialogueSystem : MonoBehaviour
     public void AdvanceDialogue()
     {
         AbstractDialogue now = nowDialogue.Now();
+        Debug.Log("advancing dialogue, " + now.ToString());
         
         if (dialogueBox.finishText())
         {
             switch (now.getType())
             {
-                case 0:
+                case DialogueType.regularLine:
                     dialogueBox.Wipe();
-                    goto case 1;
-                case 1:
+                    goto case DialogueType.addOn;
+                case DialogueType.addOn:
+                    dialogueBox.Enable();
                     dialogueBox.addText(now.getText());
                     nowDialogue.Advance();
                     break;
-                case 2:
+                case DialogueType.question:
                     switch (askingQuestion)
                     {
                         case 0:
                             dialogueBox.Wipe();
+                            dialogueBox.Enable();
                             dialogueBox.addText(now.getText());
                             askingQuestion = 1;
                             break;
@@ -328,7 +343,7 @@ public class DialogueSystem : MonoBehaviour
                             break;
                     }
                     break;
-                case 3:
+                case DialogueType.jump:
                     string temp = now.getText();
                     switch (temp[0])
                     {
@@ -342,17 +357,16 @@ public class DialogueSystem : MonoBehaviour
                     if (now.EndDialogue())
                         endDialogue();
                     break;
-                case 4:
+                case DialogueType.triggerEvent:
                     List<TriggerableEvent> list = now.getEvent();
-                    for(int i = 0; i < list.Count; i++)
-                    {
-                        list[i].Trigger(this, nowDialogue);
-                    }
+                    list[0].Trigger(this, nowDialogue);
+                    for (int i = 0; i < list.Count; i++)
+                        list[i].Trigger();
+                    nowDialogue.Advance();
                     if (now.EndDialogue())
                         endDialogue();
-                    //nowDialogue.Advance();
                     break;
-                case 5:
+                case DialogueType.sceneTransition:
                     int tempID;
                     endDialogue();
                     if (int.TryParse(now.getText(), out tempID))
@@ -372,8 +386,8 @@ public class DialogueSystem : MonoBehaviour
     }
     public void TriggerDialogue(Dialogue dialogue)
     {
+        if (GlobalEventSystem.isInDialogue) return;
         GlobalEventSystem.DialogueStart();
-        dialogueBox.Enable();
         nowDialogue = dialogue;
         AdvanceDialogue();
     }

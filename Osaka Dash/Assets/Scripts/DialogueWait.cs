@@ -6,17 +6,21 @@ public class DialogueWait : TriggerableEvent
 {
     [SerializeField] float timerDuration = 1;
     float timer;
+    bool triggered = false;
 
     private void Update()
     {
-        if(timer > 0) timer -= Time.deltaTime;
-        else if (timer < 0) { 
-            timer = 0;
+        if (!triggered) return;
+        
+        timer -= Time.deltaTime;
+        if (timer < 0) {
+            triggered = false;
             ReturnToDialogue();
         }
     }
     public override void Trigger()
     {
         timer = timerDuration;
+        triggered = true;
     }
 }

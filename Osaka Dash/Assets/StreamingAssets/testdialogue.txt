@@ -28,7 +28,8 @@ A answer 3
 = Questions Test
 
 - The train will now depart!
-t 0,1
-T 2
+T 0,1
 T 3
+T 2
+j 0
 = Train Depart
