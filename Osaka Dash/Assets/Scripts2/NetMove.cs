@@ -16,13 +16,14 @@ public class NetMove : MonoBehaviour
     private bool isHoldingFish = false;
     private GameObject caughtFish = null;
     private Vector3 fishOriginalPosition;
+    public int fishNeed;
 
     [SerializeField] Camera referenceCam;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        fishCount = 1;
+        fishCount = 0;
         StartCoroutine(LoadNextSceneAfterDelay("Sumiyoshi Taisha", 60f));
 
     }
@@ -40,37 +41,19 @@ public class NetMove : MonoBehaviour
         if (newVelocity.magnitude > moveSpeed) newVelocity = newVelocity.normalized * moveSpeed;
         rb.velocity = newVelocity;
 
-        /*
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-
-        if (transform.position.y <= -2.5f && transform.position.x <= -4.5f)
-        {
-            if (transform.position.y <= -2.5f && movement.y < 0)
-            {
-                movement.y = 0;  
-            }
-            if (transform.position.x <= -4.5f && movement.x < 0)
-            {
-                movement.x = 0;  
-            }
-        }
-        rb.velocity = movement * moveSpeed;
-        */
-
-        if (fishCount >= 5)
+     
+        if (fishCount >= fishNeed)
         {
             Debug.Log("Fish all caught");
-
+            //swap position of the net here to move on
 
             if (SceneManager.GetActiveScene().name == "GoldfishScoopL2")
             {
-                SceneManager.LoadScene("Sumiyoshi Taisha");
+               SceneManager.LoadScene("Sumiyoshi Taisha");
             }
             else
             {
-                SceneManager.LoadScene("GoldfishScoopL2");
+               SceneManager.LoadScene("GoldfishScoopL2");
             }
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isRotating) 
