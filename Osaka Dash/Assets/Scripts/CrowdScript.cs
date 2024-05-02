@@ -25,7 +25,7 @@ public class CrowdScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         speed *= -1;
-        if (speed==4.3f) transform.rotation = new Quaternion(0, 180, 0, 0); 
+        if (speed == 4.3f) transform.rotation = new Quaternion(0, 180, 0, 0);
         else transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 

@@ -1798,12 +1798,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- Use awsd keys to move
+  m_Text: '- Place fish here
 
-    - Press space to catch and bring to bowl
-
-    -Press
-    r to release'
+'
 --- !u!222 &1682860770
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1918,6 +1915,7 @@ MonoBehaviour:
   fishHoldDuration: 2
   next: {fileID: 0}
   fishDisplay: {fileID: 1585099308}
+  fishNeed: 15
   referenceCam: {fileID: 961115648}
 --- !u!212 &1713866254
 SpriteRenderer:
