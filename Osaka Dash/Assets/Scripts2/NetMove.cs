@@ -161,5 +161,7 @@ public class NetMove : MonoBehaviour
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(sceneName);
     }
-
+    //check to see if old manactually gets the 5 coins then set the coins to 0 (solves having 0 coins at the end problem
+    // combine both scooping games into 1? or mak it more understandable
+    //have a quest for the person
 }
