@@ -19,7 +19,7 @@ public class OverworldMovement : MonoBehaviour
     Animator animator, aoiAnim;
     public string objects;        // player may collect objects, like the himeji ticket. if so, store here to trigger events.
     bool frozen;
-    int stage;
+    public int stage;
     [SerializeField] float[] facing = { 0f, 0f };
     // Start is called before the first frame update
     void Start()
@@ -74,7 +74,6 @@ public class OverworldMovement : MonoBehaviour
 
         if (!aoi.GetComponent<BoxCollider2D>().IsTouching(GetComponent<CircleCollider2D>()))
         {
-            Debug.Log(aoiAnim.GetInteger("HMoving") + " " + aoiAnim.GetInteger("VMoving"));
             if ((int)aoi.transform.position.y < (int)transform.position.y)
             {
 
@@ -134,12 +133,11 @@ public class OverworldMovement : MonoBehaviour
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame1objs[2].GetComponent<PolygonCollider2D>();
             transform.position = new Vector2(105, 41);
             aoi.transform.position = new Vector2(98, 41);
-            stage++;
         }
         else if (stage == 2)
         {
             minigamePlayer.SetActive(true);
-            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(3);
+            minigamePlayer.GetComponent<PlayerMove>().setObjectsLeft(1);
             frozen = true;
             minigame2objs[0].SetActive(true);
             minigame2objs[1].SetActive(true);
@@ -148,7 +146,6 @@ public class OverworldMovement : MonoBehaviour
             minigame2objs[5].SetActive(true);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame2objs[2].GetComponent<PolygonCollider2D>();
-            stage++;
             transform.position = new Vector2(382, 25);
             aoi.transform.position = new Vector2(390, 25);
         } else if (stage == 3)
@@ -158,7 +155,6 @@ public class OverworldMovement : MonoBehaviour
             frozen = true;
             cam.GetComponent<CinemachineVirtualCamera>().Follow = minigamePlayer.transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = minigame3objs[0].GetComponent<PolygonCollider2D>();
-            stage++;
             // set transform to next stage
         }
     }
@@ -192,19 +188,18 @@ public class OverworldMovement : MonoBehaviour
 
     public void lostMinigame()
     {
-        if(stage == 2)
+        if(stage == 1)
         {
             frozen = false;
             minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
-            transform.position = new Vector2(-77, 40);
-            aoi.transform.position = new Vector2(-74, 40);
+            transform.position = new Vector2(-40, 31);
+            aoi.transform.position = new Vector2(-34, 31);
             minigamePlayer.SetActive(false);
             minigame1objs[0].SetActive(false);
             minigame1objs[1].SetActive(false);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage1objs[0].GetComponent<PolygonCollider2D>();
-            stage--;
-        } else if (stage == 3)
+        } else if (stage == 2)
         {
             frozen = false;
             minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
@@ -213,7 +208,6 @@ public class OverworldMovement : MonoBehaviour
             aoi.transform.position = new Vector2(98, 41);
             cam.GetComponent<CinemachineVirtualCamera>().Follow = transform;
             cam.GetComponent<CinemachineConfiner>().m_BoundingShape2D = stage2objs[0].GetComponent<PolygonCollider2D>();
-            stage--;
         }
     }
 

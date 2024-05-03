@@ -78,6 +78,7 @@ public class PlayerMove : MonoBehaviour
             objectsLeft--;
             if (objectsLeft == 0)
             {
+                overworldPlayer.GetComponent<OverworldMovement>().setStage(overworldPlayer.GetComponent<OverworldMovement>().stage+1);
                 overworldPlayer.GetComponent<OverworldMovement>().nextStage();
             }
         } else if (collision.gameObject.name.Contains("Crowd") || collision.gameObject.name.Contains("Crusher")
