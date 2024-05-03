@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public AudioSource soundEffect;
+
     private Vector2 moveDirection;
     private AnimationController animationController;
     private Rigidbody2D rb;
@@ -93,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("collide");
             Destroy(collision.gameObject);
             count++;
+            soundEffect.Play();
+
         }
     }
 }
