@@ -80,6 +80,7 @@ public class DialogueDisplay : MonoBehaviour
                     selected = nextSelection;
                 }*/
 
+            /*
             int flag =
                 (Input.GetKeyDown(KeyCode.UpArrow) ? 8 : 0) |
                 (Input.GetKeyDown(KeyCode.LeftArrow) ? 4 : 0) |
@@ -98,6 +99,7 @@ public class DialogueDisplay : MonoBehaviour
                         (selected.Item2 + (((flag & 4) != 0) ? (choiceGridSizeX - 1) : ((flag & 1) != 0) ? 1 : 0)) % choiceGridSizeX)
                 ) ;
             }
+            */
         }
     }
 
@@ -133,7 +135,7 @@ public class DialogueDisplay : MonoBehaviour
         for (int i = 0; i < questionTexts.Count && i < questionSelection.Count; i++)
         {
             questionSelection[i].displayChoice(questionTexts[i]);
-            questionSelection[i].deselect();
+            questionSelection[i].init(i, this);
         }
         questionSelection[0].setChoice();
         selected = new Tuple<int, int>(0, 0);
@@ -151,7 +153,6 @@ public class DialogueDisplay : MonoBehaviour
         for (int i = 0; i < questionSelection.Count && i < questionSelection.Count; i++)
         {
             questionSelection[i].hideChoice();
-            questionSelection[i].deselect();
         }
         Debug.Log(String.Format("answer {0} given", choice));
         caller.AnswerGiven(choice);
@@ -159,7 +160,7 @@ public class DialogueDisplay : MonoBehaviour
 
     public void getChoice()
     {
-        AnswerGiven(selected.Item1 * choiceGridSizeX + selected.Item2);
+        AnswerGiven(DialogueQuestion.getCurrentChoice());
         return;
     }
 }

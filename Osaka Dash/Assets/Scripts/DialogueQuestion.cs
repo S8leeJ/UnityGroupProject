@@ -3,49 +3,58 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogueQuestion : MonoBehaviour
 {
     TextMeshProUGUI textbox;
-    [SerializeField] GameObject selectedGraphic;
-    bool isSelected = false;
+    Button button;
+    DialogueDisplay caller;
+    public int choiceID;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
-        textbox=GetComponent<TextMeshProUGUI>();
+        button = GetComponent<Button>();
+        textbox = GetComponent<TextMeshProUGUI>();
         if (textbox == null)
             textbox = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    private void Update()
-    {
-        selectedGraphic.SetActive(isSelected);
+        button.interactable = false;
     }
 
     public void displayChoice(string text)
     {
         gameObject.SetActive (true);
         textbox.SetText(text);
+        button.interactable = true;
     }
 
     public void hideChoice()
     {
         gameObject.SetActive(false);
-        isSelected = false;
+        button.interactable = false;
     }
 
     public bool setChoice()
     {
         if (!gameObject.activeSelf) return false;
         //change selection sound effect here
-        isSelected = true;
+        button.Select();
         return true;
     }
 
-    public void deselect()
+    public void init(int id,DialogueDisplay parent)
     {
-        isSelected = false;
+        choiceID = id;
+        caller = parent;
+    }
+
+    public static int getCurrentChoice() => EventSystem.current.currentSelectedGameObject.GetComponent<DialogueQuestion>().choiceID;
+
+    public void SendAnswer()
+    {
+        caller.AnswerGiven(choiceID);
     }
 }

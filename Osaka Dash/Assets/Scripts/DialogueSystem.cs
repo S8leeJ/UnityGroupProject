@@ -338,9 +338,9 @@ public class DialogueSystem : MonoBehaviour
                             dialogueBox.displayQuestion(this, now.getQuestionChoices());
                             askingQuestion = 2;
                             break;
-                        case 2:
+                        /*case 2:
                             dialogueBox.getChoice();
-                            break;
+                            break;*/
                     }
                     break;
                 case DialogueType.jump:
