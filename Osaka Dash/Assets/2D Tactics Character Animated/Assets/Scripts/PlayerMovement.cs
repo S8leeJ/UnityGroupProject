@@ -90,6 +90,20 @@ public class PlayerMovement : MonoBehaviour
                 npcScript.DisplayDialog();
             }
         }
+        if (collision.gameObject.CompareTag("POI"))
+        {
+            count = 0;
+            coins.text = "COINS: " + count.ToString() + "X";
+
+            NPC npcScript = collision.gameObject.GetComponent<NPC>();
+          
+            // Check if the NPC script component exists
+            if (npcScript != null)
+            {
+                // Call the Speak method on the NPC script component
+                npcScript.DisplayDialog();
+            }
+        }
         if (collision.gameObject.CompareTag("CollectFish"))
         {
             Debug.Log("collide");

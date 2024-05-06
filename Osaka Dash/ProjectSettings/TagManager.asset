@@ -10,6 +10,7 @@ TagManager:
   - Fish
   - Bowl
   - CollectFish
+  - POI
   layers:
   - Default
   - TransparentFX
