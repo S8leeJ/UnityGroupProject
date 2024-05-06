@@ -9,8 +9,7 @@ Q Do you have 5 coins? I need them to get your net.
 A Yes
 a- Ok lets proceed
 a- First, let me give you a rundown. 
-a+  Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times. 
-a- In Japan, fishing is not only a means of sustenance but also a recreational activity and a way to connect with nature. 
+a+  Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times.  
 a- Goldfish scooping, known as "kingyo sukui" in Japanese, is a traditional Japanese game that is often played at summer festivals, known as "matsuri." 
 a- The game involves scooping goldfish, which are placed in a shallow tank filled with water, using a paper scoop called a "poi" or a delicate net made of thin paper or wire.
 a- So please, help me catch the fish!
@@ -19,10 +18,9 @@ A No
 a-Go get the coins.
 = Fishing
 
-- Thank you for visiting us today at Sumiyoshi Taisha, congratulations on a great accomplishment
+- Thank you for visiting us today at Sumiyoshi Taisha.
 +  Oh right! I think the boy you were trying to find went that way, to Himeiji Castle!
-- I will do you a favour and teleport you there right now!
-+  Good look on your adventures and I hope to see you soon!
+- I will do you a favor and teleport you there right now, good luck!
 S Himeji Castle Planning
 = EndGame
 
@@ -38,3 +36,12 @@ S Himeji Castle Planning
 - After catching the fish, you will only have 5 seconds to drop it into the bowl on the left. Good luck!
 S GoldfishScoop
 = Net
+
+- welcome to the first part of goldfish scooping!
+- quickly catch 5 fish and put it in the red bowl using your mouse
+- after you will go to the next part!
+= Poi2
+
+- congrats on the first level! Next you will do the same thing except now there is 20 seconds! 
+- after this you will be teleported back to Sumiyoshi Taisha
+= Poi3
