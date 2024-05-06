@@ -36,3 +36,12 @@ S Himeji Castle Planning
 - After catching the fish, you will only have 5 seconds to drop it into the bowl on the left. Good luck!
 S GoldfishScoop
 = Net
+
+- welcome to the first part of goldfish scooping!
+- quickly catch 5 fish and put it in the red bowl using your mouse
+- after you will go to the next part!
+= Poi2
+
+- congrats on the first level! Next you will do the same thing except now there is 20 seconds! 
+- after this you will be teleported back to Sumiyoshi Taisha
+= Poi3
