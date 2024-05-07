@@ -19,13 +19,13 @@ a-Go get the coins.
 = Fishing
 
 Q When was Sumiyoshi Taisha founded
-A 1810
+A 1803
 a- Thank you for visiting us today at Sumiyoshi Taisha.
 a+  Oh right! I think the boy you were trying to find went that way, to Himeiji Castle!
 a- I will do you a favor and teleport you there right now, good luck!
 aS Himeji Castle Planning
-A 1328
-a-Go to the old man's fishing minigame to find out!
+A 1203
+a- Go to the old man's fishing minigame to find out!
 = EndGame
 
 - Hello, I see you have come to The iconic Taiko-bashi, or Drum Bridge, at Sumiyoshi Taisha in Osaka, Japan
