@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: a677726558eeeb74caa3783cf825e86a
+  - enabled: 1
+    path: Assets/Scenes/Kansai Airport.unity
+    guid: b618064824c8e25488265b2a6305b063
+  - enabled: 1
     path: Assets/Scenes/Sumiyoshi Taisha.unity
     guid: 360d88d908dd82d4e8bbf690183998f8
   - enabled: 1

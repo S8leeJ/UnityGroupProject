@@ -31,5 +31,5 @@ A answer 3
 T 0,1
 T 3
 T 2
-j 0
+S Sumiyoshi Taisha
 = Train Depart
