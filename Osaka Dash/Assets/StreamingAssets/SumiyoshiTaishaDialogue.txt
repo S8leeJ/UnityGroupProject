@@ -18,13 +18,13 @@ A No
 a-Go get the coins.
 = Fishing
 
-Q When was Sumiyoshi Taisha founded
-A 1803
+Q Did you finish the fish game? If so you should know this: When was Goldfish Scooping founded? If you don't know, play the Fish game again.
+A 1810
 a- Thank you for visiting us today at Sumiyoshi Taisha.
 a+  Oh right! I think the boy you were trying to find went that way, to Himeiji Castle!
 a- I will do you a favor and teleport you there right now, good luck!
-aS Himeji Castle Planning
-A 1203
+aSHimeji Castle Planning
+A 1703
 a- Go to the old man's fishing minigame to find out!
 = EndGame
 
