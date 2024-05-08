@@ -8,6 +8,7 @@ public class DEFAULTOVM : MonoBehaviour
     public GameObject aoi;
     bool frozen;
     Rigidbody2D rb;
+    [SerializeField][Tooltip("This will use GetComponent<CircleCollider2D> if left empty")] CircleCollider2D aoiCircle;
     Animator animator, aoiAnim;
     [SerializeField] float[] facing = { 0f, 0f };
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class DEFAULTOVM : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         frozen = false;
+        if (aoiCircle == null) aoiCircle = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -41,7 +43,7 @@ public class DEFAULTOVM : MonoBehaviour
         animator.SetInteger("HMoving", (int)(horizontal * 100));
         animator.SetInteger("VMoving", (int)(vertical * 100));
 
-        if (!aoi.GetComponent<BoxCollider2D>().IsTouching(GetComponent<CircleCollider2D>()))
+        if (!aoi.GetComponent<BoxCollider2D>().IsTouching(aoiCircle))
         {
             if ((int)aoi.transform.position.y < (int)transform.position.y)
             {

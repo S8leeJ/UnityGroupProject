@@ -31,3 +31,10 @@ public static class GlobalEventSystem
         SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 }
+
+public static class GlobalVariableSystem
+{
+    static Dictionary<string, int> integerList;
+    static Dictionary<string, float> floatList;
+    static Dictionary<string, bool> boolList;
+}
