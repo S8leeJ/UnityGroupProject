@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 1354814363076818216}
   - component: {fileID: 3404194041837772726}
   - component: {fileID: 1885751679886089329}
+  - component: {fileID: 897406922}
   m_Layer: 5
   m_Name: Pause Screen
   m_TagString: Untagged
@@ -369,6 +370,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &897406922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2509981885878647188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43e9878d8018d64387ec82ec88afad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paused: {fileID: 2509981885878647188}
 --- !u!1 &2543621678601067070
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,13 +504,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 897406922}
+        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_MethodName: resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -536,7 +550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21.08844, y: 79.47911}
+  m_AnchoredPosition: {x: 0, y: 58}
   m_SizeDelta: {x: 262.8978, y: 83.5111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4990917052485974727
@@ -834,13 +848,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 897406922}
+        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_MethodName: restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

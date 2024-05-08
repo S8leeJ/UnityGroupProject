@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class DEFAULTOVM : MonoBehaviour
 {
     float horizontal, vertical;
     public GameObject aoi;
     bool frozen;
     Rigidbody2D rb;
+    public float speed;
     [SerializeField][Tooltip("This will use GetComponent<CircleCollider2D> if left empty")] CircleCollider2D aoiCircle;
     Animator animator, aoiAnim;
     [SerializeField] float[] facing = { 0f, 0f };
     // Start is called before the first frame update
+
+
+    public AudioSource soundEffect;
+    public int count = 0;
+    public Text coins;
+
     void Start()
     {
         aoiAnim = aoi.GetComponent<Animator>();
@@ -27,7 +35,7 @@ public class DEFAULTOVM : MonoBehaviour
         if (GlobalEventSystem.isPaused()) { return; }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if (!frozen) rb.velocity = new Vector2(horizontal * 7.0f, vertical * 7.0f);
+        if (!frozen) rb.velocity = new Vector2(horizontal * speed, vertical * speed);
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) facing[0] = -1;
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) facing[0] = 1;
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow)) facing[1] = 1;
@@ -85,6 +93,44 @@ public class DEFAULTOVM : MonoBehaviour
         {
             aoiAnim.SetInteger("VMoving", 0);
             aoiAnim.SetInteger("HMoving", 0);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (GlobalEventSystem.isInDialogue) return;
+        // Check if the collided GameObject has the "NPC" tag
+        if (collision.gameObject.CompareTag("NPC"))
+        {
+            NPC npcScript = collision.gameObject.GetComponent<NPC>();
+
+            // Check if the NPC script component exists
+            if (npcScript != null)
+            {
+                // Call the Speak method on the NPC script component
+                npcScript.DisplayDialog();
+            }
+        }
+        if (collision.gameObject.CompareTag("POI"))
+        {
+            count = 0;
+            coins.text = "COINS: " + count.ToString() + "X";
+
+            NPC npcScript = collision.gameObject.GetComponent<NPC>();
+
+            // Check if the NPC script component exists
+            if (npcScript != null)
+            {
+                // Call the Speak method on the NPC script component
+                npcScript.DisplayDialog();
+            }
+        }
+        if (collision.gameObject.CompareTag("CollectFish"))
+        {
+            Debug.Log("collide");
+            Destroy(collision.gameObject);
+            count++;
+            soundEffect.Play();
+
         }
     }
 }
