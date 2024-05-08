@@ -1,91 +1,115 @@
 fileFormatVersion: 2
-guid: 1f6bdf98ffb3b37479a62e6973a19a55
+guid: 90ed91510d5412a43a07b672a802d921
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3016444622499862352
-    second: rapit_0
+      213: -6074187079133600768
+    second: walltiles_0
   - first:
-      213: 7928721066662973258
-    second: rapit_1
+      213: -5631325514632842383
+    second: walltiles_1
   - first:
-      213: -9123128873000181701
-    second: rapit_2
+      213: 6062209685652963542
+    second: walltiles_2
   - first:
-      213: 2608702808275771470
-    second: rapit_3
+      213: -3872450751253113725
+    second: walltiles_3
   - first:
-      213: -4635537397110136993
-    second: rapit_4
+      213: -2359292802770710040
+    second: walltiles_4
   - first:
-      213: 6962527013074910827
-    second: rapit_5
+      213: 8640870217023132851
+    second: walltiles_5
   - first:
-      213: -8052963263548679678
-    second: rapit_top_cab_back
+      213: -950763091991587071
+    second: walltiles_6
   - first:
-      213: 3066941234892785366
-    second: rapit_top_cab_front
+      213: 4462079926608626239
+    second: walltiles_7
   - first:
-      213: -144563997250049161
-    second: rapit_bottom_end_exposed
+      213: -7806473044561623161
+    second: walltiles_8
   - first:
-      213: 1170279099067381852
-    second: rapit_bottom_doorway_exposed
+      213: 4321134440458755161
+    second: walltiles_9
   - first:
-      213: -3727578737127570501
-    second: rapit_bottom_window_exposed
+      213: -2264220746669520898
+    second: walltiles_10
   - first:
-      213: -4231126529904324926
-    second: rapit_bottom_empty_exposed
+      213: 5780046685543623811
+    second: walltiles_11
   - first:
-      213: 3358422790494996829
-    second: rapit_bottom_driverdoor_exposed
+      213: -2718220679601226704
+    second: walltiles_12
   - first:
-      213: -3276575887650115766
-    second: rapit_bottom_cab_back
+      213: -3396552469721494701
+    second: walltiles_13
   - first:
-      213: -1567967060336026653
-    second: rapit_bottom_cab_front
+      213: -524150749285305253
+    second: walltiles_14
   - first:
-      213: -3526196513132789444
-    second: rapit_17
+      213: -8332678772388959294
+    second: walltiles_15
   - first:
-      213: 2847771302055708317
-    second: rapit_18
+      213: 7161742915400307481
+    second: walltiles_16
   - first:
-      213: 7857400647393241654
-    second: rapit_19
+      213: 1779347703701575371
+    second: walltiles_17
   - first:
-      213: -922798372236038422
-    second: rapit_22
+      213: -5483021479813265994
+    second: walltiles_18
   - first:
-      213: -3990882856152465321
-    second: rapit_23
+      213: -4317816444916554022
+    second: walltiles_19
   - first:
-      213: 9109305972237897311
-    second: rapit_bottom_end
+      213: -6354212309573518502
+    second: walltiles_20
   - first:
-      213: 3764621685277171762
-    second: rapit_bottom_doorway
+      213: 2586508759391880785
+    second: walltiles_21
   - first:
-      213: -6863153438509973643
-    second: rapit_bottom_window
+      213: 3115939999293100085
+    second: walltiles_22
   - first:
-      213: -8075866060620616223
-    second: rapit_bottom_empty
+      213: 8869041509181405823
+    second: walltiles_23
   - first:
-      213: 7242801749065717115
-    second: rapit_bottom_driverdoor
+      213: 3492799792053003314
+    second: walltiles_24
   - first:
-      213: 4260645479746307718
-    second: rapit_25
+      213: -50445843000596792
+    second: walltiles_25
   - first:
-      213: 5008687561713887875
-    second: rapit_26
+      213: 904223529497639538
+    second: walltiles_26
   - first:
-      213: 4879765688331028114
-    second: rapit_27
+      213: 5417166910575260274
+    second: walltiles_27
+  - first:
+      213: 1318058488112122118
+    second: walltiles_28
+  - first:
+      213: 5088758437494665914
+    second: walltiles_29
+  - first:
+      213: 8275814792785586573
+    second: walltiles_30
+  - first:
+      213: 5617080148127628200
+    second: walltiles_31
+  - first:
+      213: -2894373379900729668
+    second: walltiles_32
+  - first:
+      213: 50868962111390503
+    second: walltiles_33
+  - first:
+      213: 3453637720324734137
+    second: walltiles_34
+  - first:
+      213: 6661095135684977034
+    second: walltiles_35
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -149,8 +173,8 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
-    resizeAlgorithm: 1
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -161,8 +185,8 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 16384
-    resizeAlgorithm: 1
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -175,427 +199,532 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rapit_0
+      name: walltiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00469f0b80724bba0800000000000000
+      internalID: -6074187079133600768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17337bdc74389d1b0800000000000000
+      internalID: -5631325514632842383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d00743179b412450800000000000000
+      internalID: 6062209685652963542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3841d511f8a424ac0800000000000000
+      internalID: -3872450751253113725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e157b922bb124fd0800000000000000
+      internalID: -2359292802770710040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b49aeb5ea98ae770800000000000000
+      internalID: 8640870217023132851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1071a4451063ec2f0800000000000000
+      internalID: -950763091991587071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3288e85d0e7ced30800000000000000
+      internalID: 4462079926608626239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7870e3e5026d9a390800000000000000
+      internalID: -7806473044561623161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c104611e0c7fb30800000000000000
+      internalID: 4321134440458755161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef781bd2a3fd390e0800000000000000
+      internalID: -2264220746669520898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c600526d9d63050800000000000000
+      internalID: 5780046685543623811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03c7f3391b0f64ad0800000000000000
+      internalID: -2718220679601226704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35b464546850dd0d0800000000000000
+      internalID: -3396552469721494701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54381caba7d9b8f0800000000000000
+      internalID: -524150749285305253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cb61501ec06c5c80800000000000000
+      internalID: -8332678772388959294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9131b1dac3f936360800000000000000
+      internalID: 7161742915400307481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_17
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc61a032f4381b810800000000000000
+      internalID: 1779347703701575371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b5c4efa30568e3b0800000000000000
+      internalID: -5483021479813265994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_19
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad6a863f1d80414c0800000000000000
+      internalID: -4317816444916554022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5bb47c029d41d7a0800000000000000
+      internalID: -6354212309573518502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1564df3430025e320800000000000000
+      internalID: 2586508759391880785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 530db4f9bea0e3b20800000000000000
+      internalID: 3115939999293100085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_23
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7ab3fc234a251b70800000000000000
+      internalID: 8869041509181405823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_24
       rect:
         serializedVersion: 2
         x: 0
         y: 16
         width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 057ddb007609cd920800000000000000
-      internalID: 3016444622499862352
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4f4a9d4dc9780e60800000000000000
-      internalID: 7928721066662973258
+      spriteID: 234a0ecb7eae87030800000000000000
+      internalID: 3492799792053003314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rapit_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b30e6bc50a2246180800000000000000
-      internalID: -9123128873000181701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4067d3f169f33420800000000000000
-      internalID: 2608702808275771470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5f16362c434bafb0800000000000000
-      internalID: -4635537397110136993
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6e3469ed6ddf9060800000000000000
-      internalID: 6962527013074910827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_top_cab_back
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20a19e604902e3090800000000000000
-      internalID: -8052963263548679678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_top_cab_front
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d648c4cdc6ff8a20800000000000000
-      internalID: 3066941234892785366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_end_exposed
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 14
-        width: 16
-        height: 18
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77ba9987fc76efdf0800000000000000
-      internalID: -144563997250049161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_doorway_exposed
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 14
-        width: 16
-        height: 18
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c58b9f3e3aaad3010800000000000000
-      internalID: 1170279099067381852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_window_exposed
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 14
-        width: 16
-        height: 18
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb3463d53eaf44cc0800000000000000
-      internalID: -3727578737127570501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_empty_exposed
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 14
-        width: 16
-        height: 18
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ce4259a6d40845c0800000000000000
-      internalID: -4231126529904324926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_driverdoor_exposed
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 14
-        width: 16
-        height: 18
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d59c709fbb38b9e20800000000000000
-      internalID: 3358422790494996829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_cab_back
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4f210917934782d0800000000000000
-      internalID: -3276575887650115766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_cab_front
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3eb582d14467d3ae0800000000000000
-      internalID: -1567967060336026653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_17
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5714286}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c31cf7234fe601fc0800000000000000
-      internalID: -3526196513132789444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_18
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5714286}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d96059c39e0558720800000000000000
-      internalID: 2847771302055708317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_19
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5714286}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63a6ccd22481b0d60800000000000000
-      internalID: 7857400647393241654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_22
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aeeef8705cf8133f0800000000000000
-      internalID: -922798372236038422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_23
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75006dadf298d98c0800000000000000
-      internalID: -3990882856152465321
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_bottom_end
+      name: walltiles_25
       rect:
         serializedVersion: 2
         x: 16
@@ -603,20 +732,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5e8591c481ca6e70800000000000000
-      internalID: 9109305972237897311
+      spriteID: 8c6ed87e5c7cc4ff0800000000000000
+      internalID: -50445843000596792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rapit_bottom_doorway
+      name: walltiles_26
       rect:
         serializedVersion: 2
         x: 32
@@ -624,20 +753,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 230ada81a7f9e3430800000000000000
-      internalID: 3764621685277171762
+      spriteID: 27ab14162827c8c00800000000000000
+      internalID: 904223529497639538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rapit_bottom_window
+      name: walltiles_27
       rect:
         serializedVersion: 2
         x: 48
@@ -645,20 +774,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57fbc9a6f4e21c0a0800000000000000
-      internalID: -6863153438509973643
+      spriteID: 272b6d19a94ad2b40800000000000000
+      internalID: 5417166910575260274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rapit_bottom_empty
+      name: walltiles_28
       rect:
         serializedVersion: 2
         x: 64
@@ -666,20 +795,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed231b0b92ccef80800000000000000
-      internalID: -8075866060620616223
+      spriteID: 6098c19263faa4210800000000000000
+      internalID: 1318058488112122118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rapit_bottom_driverdoor
+      name: walltiles_29
       rect:
         serializedVersion: 2
         x: 80
@@ -687,62 +816,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b75d3a711d9938460800000000000000
-      internalID: 7242801749065717115
+      spriteID: ab234a666d6ee9640800000000000000
+      internalID: 5088758437494665914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rapit_25
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5714286}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 686072e6d7ad02b30800000000000000
-      internalID: 4260645479746307718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_26
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5714286}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38aafdadcce628540800000000000000
-      internalID: 5008687561713887875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rapit_27
+      name: walltiles_30
       rect:
         serializedVersion: 2
         x: 0
@@ -756,8 +843,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2964c181a0968b340800000000000000
-      internalID: 4879765688331028114
+      spriteID: d8968e6f4b999d270800000000000000
+      internalID: 8275814792785586573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_31
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abbb0852a0e3fd40800000000000000
+      internalID: 5617080148127628200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_32
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb69babfebe15d7d0800000000000000
+      internalID: -2894373379900729668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_33
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7230eb03d09b4b000800000000000000
+      internalID: 50868962111390503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc78de5539cdef20800000000000000
+      internalID: 3453637720324734137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walltiles_35
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81e591ebb6f07c50800000000000000
+      internalID: 6661095135684977034
       vertices: []
       indices: 
       edges: []
