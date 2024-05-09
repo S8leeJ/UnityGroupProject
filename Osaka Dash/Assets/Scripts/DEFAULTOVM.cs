@@ -104,6 +104,8 @@ public class DEFAULTOVM : MonoBehaviour
             Destroy(collision.gameObject);
             count++;
             soundEffect.Play();
+            coins.text = "COINS: " + count.ToString() + "X";
+
 
         }
     }
