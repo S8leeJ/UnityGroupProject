@@ -18,6 +18,9 @@ public class OverworldMovement : MonoBehaviour
     public GameObject[] stage4objs;
     public DialogueHimeji dialogue;
     Animator animator, aoiAnim;
+    [SerializeField] float speed = 4;
+    [SerializeField][Tooltip("If this is 0 or less, it will use aoiCircle")] float aoiRadius = 4f;
+    [SerializeField][Tooltip("This will use GetComponent<CircleCollider2D> if left empty")] CircleCollider2D aoiCircle;
     public string objects;        // player may collect objects, like the himeji ticket. if so, store here to trigger events.
     bool frozen;
     public int stage;
@@ -33,13 +36,21 @@ public class OverworldMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         dialogue = GetComponent<DialogueHimeji>();
         minigamePlayer.GetComponent<PlayerMove>().healthText.text = "";
+        if (aoiRadius <= 0)
+        {
+            if (aoiCircle == null) aoiRadius = GetComponent<CircleCollider2D>().radius;
+            else aoiRadius = aoiCircle.radius;
+        }
     }
 
     public int getStage() {  return stage; }
     // Update is called once per frame
     void Update()
     {
-        if (GlobalEventSystem.isPaused()) { return; }
+        if (GlobalEventSystem.isPaused()) {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         if (!frozen) rb.velocity = new Vector2(horizontal * 7.0f, vertical * 7.0f);
@@ -73,54 +84,28 @@ public class OverworldMovement : MonoBehaviour
                 {
                     hit.collider.gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
                     dialogue.triggerDialogue("Makoto");
+                } else if (hit.collider.name.Equals("NPC1")) 
+                {
+                    dialogue.triggerDialogue("NPC1");
                 }
 
             }
         }
 
-        if (!aoi.GetComponent<BoxCollider2D>().IsTouching(GetComponent<CircleCollider2D>()))
-        {
-            if ((int)aoi.transform.position.y < (int)transform.position.y)
-            {
+        Vector3 aoiMoveVector = transform.position - aoi.transform.position;
+        float aoiDistance = aoiMoveVector.magnitude;
+        aoiMoveVector.Normalize();
+        aoiAnim.SetInteger("VMoving", (aoiMoveVector.y < -0.5f) ? -1 : (aoiMoveVector.y > 0.5f ? 1 : 0));
+        aoiAnim.SetInteger("HMoving", Mathf.Abs(aoiMoveVector.x) > 0.5f ? 1 : 0);
 
-                // use Vector2.moveTowards()
-                //aoi.transform.position = new Vector2(aoi.transform.position.x, aoi.transform.position.y + (6.8f * Time.deltaTime));
-                //aoi.transform.position = Vector2.MoveTowards(aoi.transform.position, transform.position, 6.8f * Time.deltaTime);
-                aoiAnim.SetInteger("VMoving", 1);
-            }
-            else if ((int)aoi.transform.position.y > (int)transform.position.y)
-            {
-                //aoi.transform.position = new Vector2(aoi.transform.position.x, aoi.transform.position.y - (6.8f * Time.deltaTime));
-                aoiAnim.SetInteger("VMoving", -1);
-            }
-            else
-            {
-                aoiAnim.SetInteger("VMoving", 0);
-            }
+        if (aoiMoveVector.x > 0.5f) aoi.transform.rotation = new Quaternion(0, 180, 0, 0);
+        else aoi.transform.rotation = new Quaternion(0, 0, 0, 0);
 
-            if ((int)aoi.transform.position.x < (int)transform.position.x)
-            {
-                aoi.transform.rotation = new Quaternion(0, 180, 0, 0);
-                //aoi.transform.position = new Vector2(aoi.transform.position.x + (6.8f * Time.deltaTime), aoi.transform.position.y);
-                aoiAnim.SetInteger("HMoving", 1);
-            }
-            else if ((int)aoi.transform.position.x > (int)transform.position.x)
-            {
-                aoi.transform.rotation = new Quaternion(0, 0, 0, 0);
-                //aoi.transform.position = new Vector2(aoi.transform.position.x - (6.8f * Time.deltaTime), aoi.transform.position.y);
-                aoiAnim.SetInteger("HMoving", -1);
-            }
-            else
-            {
-                aoiAnim.SetInteger("HMoving", 0);
-            }
-            aoi.transform.position = Vector2.MoveTowards(aoi.transform.position, transform.position, 6.8f * Time.deltaTime);
-        } else
+        if (aoiDistance > aoiRadius)
         {
-            aoiAnim.SetInteger("VMoving", 0);
-            aoiAnim.SetInteger("HMoving", 0);
+            aoi.transform.position += aoiMoveVector * speed * (aoiDistance / (2 * aoiRadius)) * Time.deltaTime;
         }
-        
+
     }
 
     public void minigame() // go to minigame
