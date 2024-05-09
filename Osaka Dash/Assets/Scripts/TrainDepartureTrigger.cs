@@ -30,7 +30,7 @@ public class TrainDepartureTrigger : MonoBehaviour
             playerCharacter = other.gameObject;
             Destroy(playerCharacter.GetComponent<Collider2D>());
             Destroy(playerCharacter.GetComponent<PlayerMovement>());
-            Destroy(playerCharacter.GetComponent<Rigidbody2D>());
+            //Destroy(playerCharacter.GetComponent<Rigidbody2D>());
             DialogueSystem.instance.TriggerDialogue("Train Depart");
             removeChar = true;
         }

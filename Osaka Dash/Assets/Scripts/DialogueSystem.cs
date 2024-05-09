@@ -359,16 +359,12 @@ public class DialogueSystem : MonoBehaviour
                     break;
                 case DialogueType.triggerEvent:
                     List<TriggerableEvent> list = now.getEvent();
-                    try
-                    {
-                        list[0].Trigger(this, nowDialogue);
-                    }
-                    catch (NullReferenceException)
-                    {
-                        Debug.Log("" + list + this + nowDialogue);
-                    }
-
-                    for (int i = 0; i < list.Count; i++)
+                    if (list == null)
+                        Debug.Log("Null list error!");
+                    else if (list.Count == 0)
+                        Debug.Log("list size is zero!");
+                    list[0].Trigger(this, nowDialogue);
+                    for (int i = 1; i < list.Count; i++)
                         list[i].Trigger();
                     nowDialogue.Advance();
                     if (now.EndDialogue())
