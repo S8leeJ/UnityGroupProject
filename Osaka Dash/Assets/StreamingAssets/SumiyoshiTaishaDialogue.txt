@@ -10,7 +10,7 @@ A Yes
 a-Ok lets proceed
 a-First, let me give you a rundown. 
 a+ Fishing has been an integral part of Japanese culture for centuries, with a rich history dating back to ancient times.  
-a-Goldfish scooping, known as "kingyo sukui" in Japanese, is a traditional Japanese game that is often played at summer festivals, known as "matsuri." 
+a-Goldfish scooping, known as "kingyo sukui" in Japanese, is a traditional Japanese game that is often played at summer festivals founded in 1810, known as "matsuri." 
 a-The game involves scooping goldfish, which are placed in a shallow tank filled with water, using a paper scoop called a "poi" or a delicate net made of thin paper or wire.
 a-So please, help me catch the fish!
 a+ Please pick up the "Poi" on the floor next to the fountain.
@@ -19,13 +19,17 @@ a-Go get the coins.
 = Fishing
 
 Q Did you finish the fish game? If so you should know this: When was Goldfish Scooping founded? If you don't know, play the Fish game again.
-A 1810
+A   1325
+a- Wrong answer, please go to the old man's fishing minigame to find out!
+A   1395
+a- Wrong answer, please go to the old man's fishing minigame to find out!
+A   1810
 a-Thank you for visiting us today at Sumiyoshi Taisha.
 a+ Oh right! I think the boy you were trying to find went that way, to Himeiji Castle!
 a-I will do you a favor and teleport you there right now, good luck!
 aSHimeji Castle Planning
-A 1703
-a-Go to the old man's fishing minigame to find out!
+A   1703
+a- Wrong answer, please go to the old man's fishing minigame to find out!
 = EndGame
 
 - Hello, I see you have come to The iconic Taiko-bashi, or Drum Bridge, at Sumiyoshi Taisha in Osaka, Japan
@@ -46,6 +50,6 @@ S GoldfishScoop
 - after you will go to the next part!
 = Poi2
 
-- congrats on the first level! Next you will do the same thing except now there is 20 seconds! 
-- after this you will be teleported back to Sumiyoshi Taisha
+- Congrats on the first level! Next you will do the same thing except now there is 20 seconds! 
+- After this you will be teleported back to Sumiyoshi Taisha, find the girl in the green and remember that the year this game was founded is 1810!
 = Poi3
