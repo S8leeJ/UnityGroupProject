@@ -37,7 +37,11 @@ public class DEFAULTOVM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GlobalEventSystem.isPaused()) { return; }
+        if (GlobalEventSystem.isPaused())
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         if (!frozen) rb.velocity = new Vector2(horizontal * speed, vertical * speed);
