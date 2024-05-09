@@ -9,7 +9,8 @@ public class DEFAULTOVM : MonoBehaviour
     public GameObject aoi;
     bool frozen;
     Rigidbody2D rb;
-    public float speed;
+    [SerializeField] float speed;
+    [SerializeField][Tooltip("If this is 0 or less, it will use aoiCircle")] float aoiRadius;
     [SerializeField][Tooltip("This will use GetComponent<CircleCollider2D> if left empty")] CircleCollider2D aoiCircle;
     Animator animator, aoiAnim;
     [SerializeField] float[] facing = { 0f, 0f };
@@ -26,7 +27,11 @@ public class DEFAULTOVM : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         frozen = false;
-        if (aoiCircle == null) aoiCircle = GetComponent<CircleCollider2D>();
+        if (aoiRadius <= 0)
+        {
+            if (aoiCircle == null) aoiRadius = GetComponent<CircleCollider2D>().radius;
+            else aoiRadius = aoiCircle.radius;
+        }
     }
 
     // Update is called once per frame
@@ -43,7 +48,6 @@ public class DEFAULTOVM : MonoBehaviour
         if (facing[0] == 1)
         {
             transform.rotation = new Quaternion(0, 180, 0, 0);
-
         }
         else transform.rotation = new Quaternion(0, 0, 0, 0);
         animator.SetInteger("HFacing", (int)facing[0]);
@@ -51,48 +55,18 @@ public class DEFAULTOVM : MonoBehaviour
         animator.SetInteger("HMoving", (int)(horizontal * 100));
         animator.SetInteger("VMoving", (int)(vertical * 100));
 
-        if (!aoi.GetComponent<BoxCollider2D>().IsTouching(aoiCircle))
-        {
-            if ((int)aoi.transform.position.y < (int)transform.position.y)
-            {
+        Vector3 aoiMoveVector = transform.position - aoi.transform.position;
+        float aoiDistance = aoiMoveVector.magnitude;
+        aoiMoveVector.Normalize();
+        aoiAnim.SetInteger("VMoving", (aoiMoveVector.y < -0.5f) ? -1 : (aoiMoveVector.y > 0.5f ? 1 : 0));
+        aoiAnim.SetInteger("HMoving", Mathf.Abs(aoiMoveVector.x) > 0.5f ? 1 : 0);
+        
+        if (aoiMoveVector.x > 0.5f) aoi.transform.rotation = new Quaternion(0, 180, 0, 0);
+        else aoi.transform.rotation = new Quaternion(0, 0, 0, 0);
 
-                // use Vector2.moveTowards()
-                //aoi.transform.position = new Vector2(aoi.transform.position.x, aoi.transform.position.y + (6.8f * Time.deltaTime));
-                //aoi.transform.position = Vector2.MoveTowards(aoi.transform.position, transform.position, 6.8f * Time.deltaTime);
-                aoiAnim.SetInteger("VMoving", 1);
-            }
-            else if ((int)aoi.transform.position.y > (int)transform.position.y)
-            {
-                //aoi.transform.position = new Vector2(aoi.transform.position.x, aoi.transform.position.y - (6.8f * Time.deltaTime));
-                aoiAnim.SetInteger("VMoving", -1);
-            }
-            else
-            {
-                aoiAnim.SetInteger("VMoving", 0);
-            }
-
-            if ((int)aoi.transform.position.x < (int)transform.position.x)
-            {
-                aoi.transform.rotation = new Quaternion(0, 180, 0, 0);
-                //aoi.transform.position = new Vector2(aoi.transform.position.x + (6.8f * Time.deltaTime), aoi.transform.position.y);
-                aoiAnim.SetInteger("HMoving", 1);
-            }
-            else if ((int)aoi.transform.position.x > (int)transform.position.x)
-            {
-                aoi.transform.rotation = new Quaternion(0, 0, 0, 0);
-                //aoi.transform.position = new Vector2(aoi.transform.position.x - (6.8f * Time.deltaTime), aoi.transform.position.y);
-                aoiAnim.SetInteger("HMoving", -1);
-            }
-            else
-            {
-                aoiAnim.SetInteger("HMoving", 0);
-            }
-            aoi.transform.position = Vector2.MoveTowards(aoi.transform.position, transform.position, 6.8f * Time.deltaTime);
-        }
-        else
+        if (aoiDistance > aoiRadius)
         {
-            aoiAnim.SetInteger("VMoving", 0);
-            aoiAnim.SetInteger("HMoving", 0);
+            aoi.transform.position += aoiMoveVector * speed * (aoiDistance / (2 * aoiRadius)) * Time.deltaTime;
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
