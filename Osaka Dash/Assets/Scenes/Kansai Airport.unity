@@ -13946,6 +13946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aoi
       objectReference: {fileID: 0}
+    - target: {fileID: 779451404666350030, guid: fda31b5251da0fb46a43e5559351e9d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 779451404666350031, guid: fda31b5251da0fb46a43e5559351e9d6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -45622,7 +45626,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130515418915455858}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aca3b2680402a34699104a58aea87ab, type: 3}
   m_Name: 
