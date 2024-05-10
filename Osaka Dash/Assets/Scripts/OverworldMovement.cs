@@ -16,6 +16,7 @@ public class OverworldMovement : MonoBehaviour
     public GameObject[] stage3objs;
     public GameObject[] minigame3objs;
     public GameObject[] stage4objs;
+    public GameObject tip;
     public DialogueHimeji dialogue;
     Animator animator, aoiAnim;
     [SerializeField] float speed = 4;
@@ -29,6 +30,7 @@ public class OverworldMovement : MonoBehaviour
     void Start()
     {
         // 105, 31
+        StartCoroutine(Tip());
         animator = GetComponent<Animator>();
         aoiAnim = aoi.GetComponent<Animator>();
         frozen = false;
@@ -64,10 +66,6 @@ public class OverworldMovement : MonoBehaviour
 
         }
         else transform.rotation = new Quaternion(0, 0, 0, 0);
-        animator.SetInteger("HFacing", (int)facing[0]);
-        animator.SetInteger("VFacing", (int)facing[1]);
-        animator.SetInteger("HMoving", (int)(horizontal * 100));
-        animator.SetInteger("VMoving", (int)(vertical * 100));
         if (Input.GetKeyDown(KeyCode.X))
         {
             RaycastHit2D hit = Physics2D.Raycast(rb.position, new Vector2(facing[0], 0), 4.5f, LayerMask.GetMask("NPC"));
@@ -84,9 +82,9 @@ public class OverworldMovement : MonoBehaviour
                 {
                     hit.collider.gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
                     dialogue.triggerDialogue("Makoto");
-                } else if (hit.collider.name.Equals("NPC1")) 
+                } else if (hit.collider.name.Contains("NPC")) 
                 {
-                    dialogue.triggerDialogue("NPC1");
+                    dialogue.triggerDialogue(hit.collider.name);
                 }
 
             }
@@ -106,6 +104,12 @@ public class OverworldMovement : MonoBehaviour
             aoi.transform.position += aoiMoveVector * speed * (aoiDistance / (2 * aoiRadius)) * Time.deltaTime;
         }
 
+    }
+
+    IEnumerator Tip()
+    {
+        yield return new WaitForSeconds(4);
+        tip.SetActive(false);
     }
 
     public void minigame() // go to minigame
