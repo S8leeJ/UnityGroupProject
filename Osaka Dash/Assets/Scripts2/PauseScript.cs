@@ -19,11 +19,17 @@ public class PauseScript : MonoBehaviour
     public void whenButtonClicked()
     {
         if (paused.activeInHierarchy == false)
+        {
+            Time.timeScale = 0f;
             paused.SetActive(true);
+
+        }
     }
     public void resume()
     {
         gameObject.SetActive(false);
+        Time.timeScale = 1f;
+
     }
 
     public void restart()

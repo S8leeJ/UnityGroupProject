@@ -24,7 +24,7 @@ a- Wrong answer, please go to the old man's fishing minigame to find out!
 A   1395
 a- Wrong answer, please go to the old man's fishing minigame to find out!
 A   1810
-a-Thank you for visiting us today at Sumiyoshi Taisha.
+a- That is correct! Thank you for visiting us today at Sumiyoshi Taisha.
 a+ Oh right! I think the boy you were trying to find went that way, to Himeiji Castle!
 a-I will do you a favor and teleport you there right now, good luck!
 aSHimeji Castle Planning

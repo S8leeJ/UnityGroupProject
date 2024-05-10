@@ -1,31 +1,13 @@
-- Lorem Ipsum Dolor sit amet,\nthis is some test dialogue.
-+ \nAdding Text
-- Wiping text
-= Test Dialogue
-
-
-
-Q Sample Question
-A answer 1
-a-some answer 1 text
-a-more answer 1 text
-aT0
-A answer 2
-A answer 3
-aG0
-A answer 4
-ag1
-A answer 5
-- more test dialogue
-T 0
-Q Sample Question 2
-A answer 1
-A answer 2
-Q Sample Question 3
-A answer 1
-A answer 2
-A answer 3
-= Questions Test
+T 4,5
+- Are you sure the boy went this way?
+- Yes, I'm sure!
+- And you said you think he accidentally swapped his bag with you?
+- Yes, remember when I bumped into him and we both dropped our bags? 
++ I think our bags got swapped when that happened.
+- Well if he went this way he's probably on that train, don't you think?
+- You're right!
++ \nWe gotta get on that train!
+= Opening
 
 - The train will now depart!
 T 0,1
