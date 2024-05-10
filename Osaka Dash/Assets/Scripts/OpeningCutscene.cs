@@ -5,7 +5,7 @@ using UnityEngine;
 public class OpeningCutscene : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         DialogueSystem.instance.TriggerDialogue("Opening");
     }

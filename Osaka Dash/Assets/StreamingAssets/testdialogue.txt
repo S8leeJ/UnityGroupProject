@@ -1,12 +1,19 @@
 T 4,5
+t 6,10
 - Are you sure the boy went this way?
 - Yes, I'm sure!
 - And you said you think he accidentally swapped his bag with you?
 - Yes, remember when I bumped into him and we both dropped our bags? 
 + I think our bags got swapped when that happened.
 - Well if he went this way he's probably on that train, don't you think?
-- You're right!
-+ \nWe gotta get on that train!
+- The train will now depart!
+- You're right, we gotta get on that train before it leaves!
+T 8,7,6,10
+T 9,10
+t 11
+T 0,1
+T 2
+S Sumiyoshi Taisha
 = Opening
 
 - The train will now depart!

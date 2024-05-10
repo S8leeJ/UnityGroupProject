@@ -302,7 +302,7 @@ public class DialogueSystem : MonoBehaviour
         if (!GlobalEventSystem.isInDialogue) return;
 
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) 
         {
             AdvanceDialogue();
         }
@@ -369,6 +369,8 @@ public class DialogueSystem : MonoBehaviour
                     nowDialogue.Advance();
                     if (now.EndDialogue())
                         endDialogue();
+                    else
+                        AdvanceDialogue();
                     break;
                 case DialogueType.sceneTransition:
                     int tempID;

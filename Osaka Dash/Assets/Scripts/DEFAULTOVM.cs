@@ -44,6 +44,11 @@ public class DEFAULTOVM : MonoBehaviour
         }
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        animator.SetInteger("HMoving", Mathf.Abs(horizontal) > 0.5f ? 1 : 0);
+        if (Mathf.Abs(horizontal) < 0.5f)
+            animator.SetInteger("VMoving", (vertical < -0.5f) ? -1 : (vertical > 0.5f ? 1 : 0));
+        else
+            animator.SetInteger("VMoving", 0);
         if (!frozen) rb.velocity = new Vector2(horizontal * speed, vertical * speed);
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) facing[0] = -1;
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) facing[0] = 1;
