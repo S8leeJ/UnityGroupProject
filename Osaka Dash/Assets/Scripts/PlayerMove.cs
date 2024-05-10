@@ -49,6 +49,8 @@ public class PlayerMove : MonoBehaviour
 
     public void resetPos()
     {
+        
+        transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         transform.position = ogPos;
     }
 
@@ -74,6 +76,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Collectible"))
         {
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             collision.gameObject.SetActive(false);
             objectsLeft--;
             if (objectsLeft == 0)
