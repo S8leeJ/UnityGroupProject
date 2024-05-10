@@ -54,10 +54,6 @@ public class DEFAULTOVM : MonoBehaviour
             transform.rotation = new Quaternion(0, 180, 0, 0);
         }
         else transform.rotation = new Quaternion(0, 0, 0, 0);
-        animator.SetInteger("HFacing", (int)facing[0]);
-        animator.SetInteger("VFacing", (int)facing[1]);
-        animator.SetInteger("HMoving", (int)(horizontal * 100));
-        animator.SetInteger("VMoving", (int)(vertical * 100));
 
         Vector3 aoiMoveVector = transform.position - aoi.transform.position;
         float aoiDistance = aoiMoveVector.magnitude;

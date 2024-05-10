@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class ScriptedMove : TriggerableEvent
 {
-    [SerializeField][Tooltip("This will be the acceleration if there is a RigidBody component")] Vector3 moveAmount;
+    [SerializeField][Tooltip("This will be the acceleration if useAccel is checked")] Vector3 moveAmount;
     Vector3 velocity;
     [SerializeField] float moveDuration = 1;
-    [SerializeField][Tooltip("This will not be used if there is no RigidBody component")] Vector3 startVelocity;
+    [SerializeField][Tooltip("This will not be used if useAccel is unchecked")] Vector3 startVelocity;
+    [SerializeField][Tooltip("Will be ignored if null, also ignored if there is no animator.")] AnimationClip animation;
 
-    Transform transform;
-    Rigidbody2D rigidbody2D;
-    Rigidbody rigidbody;
+    new Transform transform;
+    new Rigidbody2D rigidbody2D;
+    new Rigidbody rigidbody;
+    Animator animator;
 
-    bool flag = false, useAccel;
+    bool flag = false;
+    [SerializeField] bool useAccel;
+    [SerializeField][Tooltip("If this is unchecked, moveAmount will be treated as a global coordinate, only valid if useAccel is unchecked.")] bool useRelativeCoordinates = true;
     float timer = 0;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         transform = GetComponent<Transform>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody = GetComponent<Rigidbody>();
-        useAccel = !(rigidbody2D == null && rigidbody == null);
-        velocity = useAccel ? startVelocity : (moveAmount / moveDuration);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!flag) return;
+
+        if (animator!=null && animation!=null)
+        {
+            animator.Play(animation.name);
+        }
 
         timer += Time.deltaTime;
         if (timer > moveDuration) 
@@ -55,6 +63,9 @@ public class ScriptedMove : TriggerableEvent
 
     public override void Trigger()
     {
+        if (!useRelativeCoordinates) moveAmount -= transform.position;
+        useAccel = useAccel && !(rigidbody2D == null && rigidbody == null);
+        velocity = useAccel ? startVelocity : (moveAmount / moveDuration);
         flag = true;
     }
 }
