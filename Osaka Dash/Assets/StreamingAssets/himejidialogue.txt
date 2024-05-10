@@ -52,3 +52,12 @@ a-Noooo!!!
 
 - Did you know that Himeji Castle is also known as the "White Heron Castle"? 
 = NPC1
+
+- Koruda Kanbei is also known as Koruda Yoshitaka.
+= NPC2
+
+- Have you heard of the Shogun Slope? It's just northeast of here.
+- It's called that because it was used in the ending of the television show "Aberenbo Shogun".
+- The holes on the walls are shaped like triangles and rectangles so that defenders can shoot enemies.
+- The holes are also wide inside but narrow outside, to give an extra advantage to defenders as it's harder to be shot at.
+= NPC3
