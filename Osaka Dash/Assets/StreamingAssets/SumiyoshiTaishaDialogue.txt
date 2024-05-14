@@ -51,5 +51,5 @@ S GoldfishScoop
 = Poi2
 
 - Congrats on the first level! Next you will do the same thing except now there is 20 seconds! 
-- After this you will be teleported back to Sumiyoshi Taisha, find the girl in the green and remember that the year this game was founded is 1810!
+- After this you will be teleported to the next location!
 = Poi3

@@ -49,7 +49,7 @@ public class NetMove : MonoBehaviour
 
             if (SceneManager.GetActiveScene().name == "GoldfishScoopL2")
             {
-               SceneManager.LoadScene("Sumiyoshi Taisha");
+               SceneManager.LoadScene("Himeji Castle Planning");
             }
             else
             {
