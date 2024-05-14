@@ -22,6 +22,7 @@ public class PauseScript : MonoBehaviour
         {
             Time.timeScale = 0f;
             paused.SetActive(true);
+            Debug.Log("Active");
 
         }
     }
